@@ -36,7 +36,7 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="2" Margin="20 0">
             <Label Content="Select Client:" />
-            <ComboBox x:Name="cmbKlant" Background="LightGray"   />
+            <ComboBox x:Name="cmbKlant" DisplayMemberPath="Naam"  Background="LightGray" SelectionChanged="cmbKlant_SelectionChanged"   />
         </StackPanel>
 
         <Separator Grid.Row="2" VerticalAlignment="Bottom" Margin="20 0" />
@@ -55,13 +55,13 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="4" Margin="20">
             <Label Content="Contact name:" />
-            <TextBlock x:Name="txtcontact" Background="LightGray" FontSize="16"/>
+            <TextBlock x:Name="txtContact" Background="LightGray" FontSize="16"/>
 
             <Label Content="E-mail:" />
-            <TextBlock x:Name="txtmail" Background="LightGray" FontSize="16"/>
+            <TextBlock x:Name="txtMail" Background="LightGray" FontSize="16"/>
 
             <Label Content="Phone:" />
-            <TextBlock x:Name="txtphone" Background="LightGray" FontSize="16"/>
+            <TextBlock x:Name="txtPhone" Background="LightGray" FontSize="16"/>
         </StackPanel>
 
         <Grid Grid.Row="5">

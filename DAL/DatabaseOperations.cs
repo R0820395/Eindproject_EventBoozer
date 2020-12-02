@@ -36,8 +36,9 @@ namespace DAL
             }
         }
 
-        public static Klant OphalenKlant(int klantId)
+        public static Klant OphalenKlant(int? klantId)
         {
+
             using (EventEntities entities = new EventEntities()) 
             {
                 var query = entities.Klant
