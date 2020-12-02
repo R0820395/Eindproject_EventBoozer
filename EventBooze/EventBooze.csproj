@@ -81,7 +81,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Klant.xaml">
+    <Page Include="KlantSelectie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,8 +100,8 @@
     <Compile Include="ArtiestenOverzicht.xaml.cs">
       <DependentUpon>ArtiestenOverzicht.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Klant.xaml.cs">
-      <DependentUpon>Klant.xaml</DependentUpon>
+    <Compile Include="KlantSelectie.xaml.cs">
+      <DependentUpon>KlantSelectie.xaml</DependentUpon>
     </Compile>
     <Compile Include="KlantToevoegen.xaml.cs">
       <DependentUpon>KlantToevoegen.xaml</DependentUpon>
