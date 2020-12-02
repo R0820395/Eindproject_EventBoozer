@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EventBoozeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artiest">
+          <Key>
+            <PropertyRef Name="ArtiestID" />
+          </Key>
+          <Property Name="ArtiestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefoon" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bankrekeningnr" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Eventnaam" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EventtypeID" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="datetime" Nullable="false" />
+          <Property Name="Startuur" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Einduur" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="LocatieID" Type="int" />
+          <Property Name="KlantID" Type="int" />
+        </EntityType>
+        <EntityType Name="Eventtype">
+          <Key>
+            <PropertyRef Name="EventtypeID" />
+          </Key>
+          <Property Name="EventtypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logo" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klant">
+          <Key>
+            <PropertyRef Name="KlantID" />
+          </Key>
+          <Property Name="KlantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Straat" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Huisnr" Type="int" Nullable="false" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="Gemeente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BTWnummer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contactnaam" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefoon" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locatie">
+          <Key>
+            <PropertyRef Name="LocatieID" />
+          </Key>
+          <Property Name="LocatieID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Straat" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Huisnr" Type="int" Nullable="false" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="Gemeente" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Manager" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefoon" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notitie">
+          <Key>
+            <PropertyRef Name="NotitieID" />
+          </Key>
+          <Property Name="NotitieID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Omschrijving" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ToDo">
+          <Key>
+            <PropertyRef Name="ToDoID" />
+          </Key>
+          <Property Name="ToDoID" Type="int" Nullable="false" />
+          <Property Name="Titel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Omschrijving" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Afgewerkt" Type="bit" Nullable="false" />
+          <Property Name="Volgnr" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Artiest_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="Artiest" Type="Self.Artiest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Artiest">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Klant">
+          <End Role="Klant" Type="Self.Klant" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klant">
+              <PropertyRef Name="KlantID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="KlantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Locatie">
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locatie">
+              <PropertyRef Name="LocatieID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="LocatieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventType_Event">
+          <End Role="Eventtype" Type="Self.Eventtype" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eventtype">
+              <PropertyRef Name="EventtypeID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventtypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notitie_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="Notitie" Type="Self.Notitie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Notitie">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToDo_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="ToDo" Type="Self.ToDo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="ToDo">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EventBoozeModelStoreContainer">
+          <EntitySet Name="Artiest" EntityType="Self.Artiest" Schema="EindProject" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="EindProject" store:Type="Tables" />
+          <EntitySet Name="Eventtype" EntityType="Self.Eventtype" Schema="EindProject" store:Type="Tables" />
+          <EntitySet Name="Klant" EntityType="Self.Klant" Schema="EindProject" store:Type="Tables" />
+          <EntitySet Name="Locatie" EntityType="Self.Locatie" Schema="EindProject" store:Type="Tables" />
+          <EntitySet Name="Notitie" EntityType="Self.Notitie" Schema="EindProject" store:Type="Tables" />
+          <EntitySet Name="ToDo" EntityType="Self.ToDo" Schema="EindProject" store:Type="Tables" />
+          <AssociationSet Name="FK_Artiest_Event" Association="Self.FK_Artiest_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Artiest" EntitySet="Artiest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Klant" Association="Self.FK_Event_Klant">
+            <End Role="Klant" EntitySet="Klant" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Locatie" Association="Self.FK_Event_Locatie">
+            <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventType_Event" Association="Self.FK_EventType_Event">
+            <End Role="Eventtype" EntitySet="Eventtype" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notitie_Event" Association="Self.FK_Notitie_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Notitie" EntitySet="Notitie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToDo_Event" Association="Self.FK_ToDo_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="ToDo" EntitySet="ToDo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EventBoozeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artiest">
+          <Key>
+            <PropertyRef Name="ArtiestID" />
+          </Key>
+          <Property Name="ArtiestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefoon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bankrekeningnr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Artiest_Event" FromRole="Artiest" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Eventnaam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EventtypeID" Type="Int32" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Startuur" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Einduur" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LocatieID" Type="Int32" />
+          <Property Name="KlantID" Type="Int32" />
+          <NavigationProperty Name="Artiesten" Relationship="Self.FK_Artiest_Event" FromRole="Event" ToRole="Artiest" />
+          <NavigationProperty Name="Klant" Relationship="Self.FK_Event_Klant" FromRole="Event" ToRole="Klant" />
+          <NavigationProperty Name="Locatie" Relationship="Self.FK_Event_Locatie" FromRole="Event" ToRole="Locatie" />
+          <NavigationProperty Name="Eventtype" Relationship="Self.FK_EventType_Event" FromRole="Event" ToRole="Eventtype" />
+          <NavigationProperty Name="Notities" Relationship="Self.FK_Notitie_Event" FromRole="Event" ToRole="Notitie" />
+          <NavigationProperty Name="ToDos" Relationship="Self.FK_ToDo_Event" FromRole="Event" ToRole="ToDo" />
+        </EntityType>
+        <EntityType Name="Eventtype">
+          <Key>
+            <PropertyRef Name="EventtypeID" />
+          </Key>
+          <Property Name="EventtypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_EventType_Event" FromRole="Eventtype" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Klant">
+          <Key>
+            <PropertyRef Name="KlantID" />
+          </Key>
+          <Property Name="KlantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Straat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Huisnr" Type="Int32" Nullable="false" />
+          <Property Name="Postcode" Type="Int32" Nullable="false" />
+          <Property Name="Gemeente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BTWnummer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contactnaam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefoon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Event_Klant" FromRole="Klant" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Locatie">
+          <Key>
+            <PropertyRef Name="LocatieID" />
+          </Key>
+          <Property Name="LocatieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Straat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Huisnr" Type="Int32" Nullable="false" />
+          <Property Name="Postcode" Type="Int32" Nullable="false" />
+          <Property Name="Gemeente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manager" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefoon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Event_Locatie" FromRole="Locatie" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Notitie">
+          <Key>
+            <PropertyRef Name="NotitieID" />
+          </Key>
+          <Property Name="NotitieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Notitie_Event" FromRole="Notitie" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="ToDo">
+          <Key>
+            <PropertyRef Name="ToDoID" />
+          </Key>
+          <Property Name="ToDoID" Type="Int32" Nullable="false" />
+          <Property Name="Titel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Afgewerkt" Type="Boolean" Nullable="false" />
+          <Property Name="Volgnr" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_ToDo_Event" FromRole="ToDo" ToRole="Event" />
+        </EntityType>
+        <Association Name="FK_Artiest_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="Artiest" Type="Self.Artiest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Artiest">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Klant">
+          <End Role="Klant" Type="Self.Klant" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klant">
+              <PropertyRef Name="KlantID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="KlantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Locatie">
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locatie">
+              <PropertyRef Name="LocatieID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="LocatieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventType_Event">
+          <End Role="Eventtype" Type="Self.Eventtype" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eventtype">
+              <PropertyRef Name="EventtypeID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventtypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notitie_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="Notitie" Type="Self.Notitie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="Notitie">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ToDo_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="ToDo" Type="Self.ToDo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="ToDo">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EventEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artiest" EntityType="Self.Artiest" />
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="Eventtype" EntityType="Self.Eventtype" />
+          <EntitySet Name="Klant" EntityType="Self.Klant" />
+          <EntitySet Name="Locatie" EntityType="Self.Locatie" />
+          <EntitySet Name="Notitie" EntityType="Self.Notitie" />
+          <EntitySet Name="ToDo" EntityType="Self.ToDo" />
+          <AssociationSet Name="FK_Artiest_Event" Association="Self.FK_Artiest_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Artiest" EntitySet="Artiest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Klant" Association="Self.FK_Event_Klant">
+            <End Role="Klant" EntitySet="Klant" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Locatie" Association="Self.FK_Event_Locatie">
+            <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventType_Event" Association="Self.FK_EventType_Event">
+            <End Role="Eventtype" EntitySet="Eventtype" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notitie_Event" Association="Self.FK_Notitie_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Notitie" EntitySet="Notitie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ToDo_Event" Association="Self.FK_ToDo_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="ToDo" EntitySet="ToDo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EventBoozeModelStoreContainer" CdmEntityContainer="EventEntities">
+          <EntitySetMapping Name="Artiest">
+            <EntityTypeMapping TypeName="EventBoozeModel.Artiest">
+              <MappingFragment StoreEntitySet="Artiest">
+                <ScalarProperty Name="ArtiestID" ColumnName="ArtiestID" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Bankrekeningnr" ColumnName="Bankrekeningnr" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="EventBoozeModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Eventnaam" ColumnName="Eventnaam" />
+                <ScalarProperty Name="EventtypeID" ColumnName="EventtypeID" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Startuur" ColumnName="Startuur" />
+                <ScalarProperty Name="Einduur" ColumnName="Einduur" />
+                <ScalarProperty Name="LocatieID" ColumnName="LocatieID" />
+                <ScalarProperty Name="KlantID" ColumnName="KlantID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Eventtype">
+            <EntityTypeMapping TypeName="EventBoozeModel.Eventtype">
+              <MappingFragment StoreEntitySet="Eventtype">
+                <ScalarProperty Name="EventtypeID" ColumnName="EventtypeID" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klant">
+            <EntityTypeMapping TypeName="EventBoozeModel.Klant">
+              <MappingFragment StoreEntitySet="Klant">
+                <ScalarProperty Name="KlantID" ColumnName="KlantID" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Straat" ColumnName="Straat" />
+                <ScalarProperty Name="Huisnr" ColumnName="Huisnr" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+                <ScalarProperty Name="BTWnummer" ColumnName="BTWnummer" />
+                <ScalarProperty Name="Contactnaam" ColumnName="Contactnaam" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locatie">
+            <EntityTypeMapping TypeName="EventBoozeModel.Locatie">
+              <MappingFragment StoreEntitySet="Locatie">
+                <ScalarProperty Name="LocatieID" ColumnName="LocatieID" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Straat" ColumnName="Straat" />
+                <ScalarProperty Name="Huisnr" ColumnName="Huisnr" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Gemeente" ColumnName="Gemeente" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefoon" ColumnName="Telefoon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notitie">
+            <EntityTypeMapping TypeName="EventBoozeModel.Notitie">
+              <MappingFragment StoreEntitySet="Notitie">
+                <ScalarProperty Name="NotitieID" ColumnName="NotitieID" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ToDo">
+            <EntityTypeMapping TypeName="EventBoozeModel.ToDo">
+              <MappingFragment StoreEntitySet="ToDo">
+                <ScalarProperty Name="ToDoID" ColumnName="ToDoID" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="Afgewerkt" ColumnName="Afgewerkt" />
+                <ScalarProperty Name="Volgnr" ColumnName="Volgnr" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
