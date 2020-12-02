@@ -85,6 +85,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="KlantToevoegen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,6 +102,9 @@
     </Compile>
     <Compile Include="Klant.xaml.cs">
       <DependentUpon>Klant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KlantToevoegen.xaml.cs">
+      <DependentUpon>KlantToevoegen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
