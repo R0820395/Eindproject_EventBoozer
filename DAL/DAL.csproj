@@ -93,6 +93,7 @@
     <Compile Include="Notitie.cs">
       <DependentUpon>Eventmodel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partials\Artiest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToDo.cs">
       <DependentUpon>Eventmodel.tt</DependentUpon>
@@ -124,9 +125,7 @@
       <LastGenOutput>Eventmodel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Partials\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
