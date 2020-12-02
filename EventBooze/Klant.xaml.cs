@@ -18,11 +18,13 @@ namespace EventBooze
     /// <summary>
     /// Interaction logic for Klant.xaml
     /// </summary>
-    public partial class Klant : Page
+    public partial class Klant : Window
     {
         public Klant()
         {
             InitializeComponent();
         }
+
+        
     }
 }
