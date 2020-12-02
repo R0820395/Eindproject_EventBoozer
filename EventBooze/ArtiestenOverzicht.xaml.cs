@@ -25,9 +25,41 @@ namespace EventBooze
             InitializeComponent();
         }
 
+        List<Artiest> Artiesten = new List<Artiest>();
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            gridArtiesten.ItemsSource = DatabaseOperations.ophalenArtiesten();
+            Artiesten = DatabaseOperations.ophalenArtiesten();
+            listBox.ItemsSource = Artiesten;
+
+            //foreach (var artiest in Artiesten)
+            //{
+            //    var naam = artiest.Naam;
+            //    var email = artiest.Email;
+            //    var telefoon = artiest.Telefoon;
+            //}
+        }
+
+        private void btnAddArtist_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
+            artiestBewerken.Show();
+            this.Close();
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            listBox.SelectedItem.ToString();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

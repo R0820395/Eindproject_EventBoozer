@@ -5,10 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventBooze"
         mc:Ignorable="d"
-        Title="ArtiestenOverzicht" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="ArtiestenOverzicht" Height="450" Width="400" Loaded="Window_Loaded">
     <Grid>
-        <DataGrid x:Name="gridArtiesten" AutoGenerateColumns="True">
+        <Grid.ColumnDefinitions>
             
-        </DataGrid>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="artiesten overzicht"></Label>
+        <Button Grid.Row="1" Content="edit" Margin="5 5 200 5" Click="Button_Click"/>
+        <ListBox Grid.Row="2" x:Name="listBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Naam}" />
+                        <TextBlock Text="{Binding Path=Email}"/>
+                        <TextBlock Text="{Binding Path=Telefoon}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnDelete" Click="btnDelete_Click">Delete</Button>
+                            <Button x:Name="btnEdit" Click="btnEdit_Click">Edit</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
     </Grid>
 </Window>
