@@ -11,24 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DAL;
 
 namespace EventBooze
 {
     /// <summary>
-    /// Interaction logic for ArtiestenOverzicht.xaml
+    /// Interaction logic for KlantToevoegen.xaml
     /// </summary>
-    public partial class ArtiestenOverzicht : Window
+    public partial class KlantToevoegen : Window
     {
-        public ArtiestenOverzicht()
+        public KlantToevoegen()
         {
             InitializeComponent();
-
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            gridArtiesten.ItemsSource = DatabaseOperations.ophalenArtiesten();
         }
     }
 }
