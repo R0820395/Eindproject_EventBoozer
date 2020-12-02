@@ -32,7 +32,7 @@
             <Label x:Name="lblKlant" Content="Event naam" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
         </StackPanel>
 
-        <Button x:Name="btnTerug" Content="&lt; Event naam" Margin="0" Width="375" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B"/>
+        <Button x:Name="btnTerug" Content="&lt; Event naam" Margin="0" Width="auto" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="2" Margin="20 0">
             <Label Content="Select Client:" />
