@@ -23,6 +23,7 @@ namespace EventBooze
         public ArtiestenOverzicht()
         {
             InitializeComponent();
+
         }
 
         List<Artiest> Artiesten = new List<Artiest>();
