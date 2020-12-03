@@ -29,12 +29,62 @@ namespace EventBooze
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            txtArtiest.Text = this.overzichtArtiest.Naam;
+            if (overzichtArtiest != null)
+            {
+                txtArtiest.Text = this.overzichtArtiest.Naam;
+                txtTelefoonnummer.Text = this.overzichtArtiest.Telefoon;
+                txtEmail.Text = this.overzichtArtiest.Email;
+                txtBankaccount.Text = this.overzichtArtiest.Bankrekeningnr;
+            }
+            
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            string foutmeldingen = Validatie();
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                overzichtArtiest.Naam = txtArtiest.Text;
+                overzichtArtiest.Telefoon = txtTelefoonnummer.Text;
+                overzichtArtiest.Email = txtEmail.Text;
+                overzichtArtiest.Bankrekeningnr = txtBankaccount.Text;
+                var ok = DatabaseOperations.aanpassenArtiest(overzichtArtiest);
+                if (ok >= 1) {Close();};
+            }
+            else
+            {
+                MessageBox.Show(foutmeldingen, "Foutmelding(en)", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
+        public string Validatie()
+        {
+            ArtiestenOverzicht artiestenOverzicht = new ArtiestenOverzicht();
+            string foutmeldingen = "";
+            if (string.IsNullOrWhiteSpace(txtArtiest.Text))
+            {
+                foutmeldingen += "Artiestnaam: verplicht" + Environment.NewLine;
+            }
+            if (string.IsNullOrWhiteSpace(txtTelefoonnummer.Text))
+            {
+                foutmeldingen += "Telefoonnummer: verplicht" + Environment.NewLine;
+            }
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {            
+                foutmeldingen += "Email: niet geldig" + Environment.NewLine;
+            }
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                foutmeldingen += "Email: verplicht" + Environment.NewLine;
+            }
+            if (string.IsNullOrWhiteSpace(txtBankaccount.Text))
+            {
+                foutmeldingen += "Bankaccount: verplicht" + Environment.NewLine;
+            }
+
+            return foutmeldingen;
+        }
+
+       
     }
 }

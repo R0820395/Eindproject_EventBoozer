@@ -45,7 +45,7 @@ namespace EventBooze
         {
             ArtiestBewerken artiestBewerken = new ArtiestBewerken();
             artiestBewerken.Show();
-            this.Close();
+            
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -60,6 +60,13 @@ namespace EventBooze
             ArtiestBewerken artiestBewerken = new ArtiestBewerken();
             artiestBewerken.overzichtArtiest = artiest;
             artiestBewerken.Show();
+            
+        }
+
+        private void Window_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Artiesten = DatabaseOperations.ophalenArtiesten();
+            listBox.ItemsSource = Artiesten;
         }
     }
 }

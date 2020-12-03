@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBooze", "EventBooze.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "..\DAL\DAL.csproj", "{28E3D55A-B4BD-452E-A9EB-CE6191B10C21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "..\Models\Models.csproj", "{77246473-AFF2-4663-82F9-5A18CC21BA73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{28E3D55A-B4BD-452E-A9EB-CE6191B10C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28E3D55A-B4BD-452E-A9EB-CE6191B10C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28E3D55A-B4BD-452E-A9EB-CE6191B10C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77246473-AFF2-4663-82F9-5A18CC21BA73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77246473-AFF2-4663-82F9-5A18CC21BA73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77246473-AFF2-4663-82F9-5A18CC21BA73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77246473-AFF2-4663-82F9-5A18CC21BA73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

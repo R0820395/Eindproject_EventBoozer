@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventBooze"
         mc:Ignorable="d"
-        Title="ArtiestBewerken" Height="450" Width="400" Loaded="Window_Loaded">
+        Title="ArtiestBewerken"  WindowStartupLocation="CenterOwner" Height="450" Width="400" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -25,7 +25,7 @@
             <Label Content="Telefoonnummer"/>
             <TextBox x:Name="txtTelefoonnummer" />
             <Label Content="Email"/>
-            <TextBox x:Name="Email"/>
+            <TextBox x:Name="txtEmail"/>
             <Label Content="Bankaccount"/>
             <TextBox x:Name="txtBankaccount"/>
         </StackPanel>
