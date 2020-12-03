@@ -14,10 +14,12 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition  Height="auto"/>
         </Grid.RowDefinitions>
         <Label Content="artiesten overzicht"></Label>
+        
         <Button Grid.Row="1" Content="edit" Margin="5 5 200 5" Click="Button_Click"/>
-        <ListBox Grid.Row="2" x:Name="listBox">
+        <ListBox Grid.Row="2" x:Name="listBox" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -32,6 +34,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+        <Label x:Name="lblListBox" Grid.Row="3"/>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventBooze"
         mc:Ignorable="d"
-        Title="ArtiestBewerken" Height="450" Width="400">
+        Title="ArtiestBewerken" Height="450" Width="400" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -14,17 +14,22 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+          
         </Grid.RowDefinitions>
         <Button Grid.Column="0" Grid.Row="1" Content="terug"/>
-        <TextBox Grid.Row="2" Grid.ColumnSpan="2"/>
-        <TextBox Grid.Row="3" Grid.ColumnSpan="2"/>
-        <TextBox Grid.Row="4" Grid.ColumnSpan="2"/>
-        <TextBox Grid.Row="5" Grid.ColumnSpan="2"/>
-        <Button Grid.Column="1" Grid.Row="6" Content="save"/>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <Label Content="Artiest naam"/>
+            <TextBox x:Name="txtArtiest"/>
+            <Label Content="Telefoonnummer"/>
+            <TextBox x:Name="txtTelefoonnummer" />
+            <Label Content="Email"/>
+            <TextBox x:Name="Email"/>
+            <Label Content="Bankaccount"/>
+            <TextBox x:Name="txtBankaccount"/>
+        </StackPanel>
+        
+        <Button x:Name="btnSave" Grid.Column="1" Grid.Row="4" Content="save" Click="btnSave_Click"/>
     </Grid>
 </Window>

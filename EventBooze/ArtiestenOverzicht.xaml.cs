@@ -41,11 +41,6 @@ namespace EventBooze
             //}
         }
 
-        private void btnAddArtist_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ArtiestBewerken artiestBewerken = new ArtiestBewerken();
@@ -55,12 +50,16 @@ namespace EventBooze
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            listBox.SelectedItem.ToString();
+            // listBox.SelectedItem = ((sender as Button).Parent as StackPanel).Parent.ToString();
+            lblListBox.Content = (sender as Button).DataContext.ToString();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            Artiest artiest = (sender as Button).DataContext as Artiest;
+            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
+            artiestBewerken.overzichtArtiest = artiest;
+            artiestBewerken.Show();
         }
     }
 }
