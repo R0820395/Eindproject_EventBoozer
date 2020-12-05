@@ -36,7 +36,7 @@ namespace EventBooze
                 txtEmail.Text = this.overzichtArtiest.Email;
                 txtBankaccount.Text = this.overzichtArtiest.Bankrekeningnr;
             }
-            
+            else { btnSave.Content = "Toevoegen"; }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
