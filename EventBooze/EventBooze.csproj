@@ -77,11 +77,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ArtiestBewerken.xaml">
+    <Page Include="Artiest\ArtiestBewerken.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ArtiestenOverzicht.xaml">
+    <Page Include="Artiest\ArtiestenOverzicht.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,10 +101,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ArtiestBewerken.xaml.cs">
+    <Compile Include="Artiest\ArtiestBewerken.xaml.cs">
       <DependentUpon>ArtiestBewerken.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArtiestenOverzicht.xaml.cs">
+    <Compile Include="Artiest\ArtiestenOverzicht.xaml.cs">
       <DependentUpon>ArtiestenOverzicht.xaml</DependentUpon>
     </Compile>
     <Compile Include="Klant\KlantSelectie.xaml.cs">
