@@ -14,7 +14,7 @@
             Background="{DynamicResource MaterialDesignPaper}"
             FontFamily="{DynamicResource MaterialDesignFont}"
         Title="EventDetail"        
-        Width="375" Height="812" Loaded="Window_Loaded">
+        Width="375" Height="812" Loaded="Window_Loaded" x:Name="EventsDetails">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
             <Label.Content>
-                <TextBlock Text="{Binding EventName, FallbackValue='&#160;EventNaam&#160;'}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding Path=Eventnaam, FallbackValue='&#160;EventNaam&#160;'}" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock.TextDecorations>
                         <TextDecoration Location="Underline">
                             <TextDecoration.Pen>
@@ -35,7 +35,7 @@
         </Label>
         <Label Background="Black" Foreground="#e0e0e0" FontSize="13" Margin="0 55 0 15" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Panel.ZIndex="2">
             <Label.Content>
-                <TextBlock Text="{Binding Ev.Eventtype, FallbackValue='&#160;EventType&#160;'}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock x:Name="txtEventTypeNaam" VerticalAlignment="Center" HorizontalAlignment="Center">
                 </TextBlock>
             </Label.Content>
         </Label>
@@ -59,7 +59,7 @@
                     </Viewbox>
                     <Label Content="NOTES" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
                     <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
-                      <Run Text="{Binding AantalNotities, FallbackValue='20 Notes'}" />
+                      <Run x:Name="txtAantalNotities" />
                     </TextBlock>
 
                 </Grid>
@@ -83,9 +83,9 @@
                     </Viewbox>
                     <Label Content="TODO" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
                     <Border Grid.Column="1" Grid.Row="1" CornerRadius="35">
-                        <TextBlock Text="{Binding Event.aantalTodos, FallbackValue='15/20 Complete'}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Padding="5 0"  Margin="15 0 84 0" Background="#ffbd45" />
+                        <TextBlock x:Name="txtAantalTodos" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Padding="5 0"  Margin="15 0 84 0" Background="#ffbd45" />
                     </Border> <!-- todo checkmark -->
-                    <materialDesign:PackIcon Kind="{Binding Event.todo.completed, FallbackValue='WindowClose'}" Foreground="{Binding Event.todo.completeColor, FallbackValue='black'}" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="{Binding Path=Event.todo.completed, FallbackValue='WindowClose'}" Foreground="{Binding Path=Event.todo.completeColor, FallbackValue='black'}" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1">
@@ -108,11 +108,11 @@
 
                     <Label Content="LOCATION" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
                     <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
-                      <Run Text="{Binding Event.Locatie.adres, FallbackValue='Feestzaal Den Eyck'}"/>
+                      <Run Text="{Binding Path=Event.Locatie.adres, FallbackValue='Feestzaal Den Eyck'}"/>
                       <LineBreak />
-                      <Run Text="{Binding Event.Locatie.plaats, FallbackValue='Kasterlee'}" />
+                      <Run Text="{Binding Path=Event.Locatie.plaats, FallbackValue='Kasterlee'}" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding chLocatie, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chLocatie, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1">
@@ -134,11 +134,11 @@
                     </Viewbox>
                     <Label Content="CLIENT" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
                     <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
-                      <Run Text="{Binding Klant.Bedrijf, FallbackValue='WOKU BVBA'}"/>
+                      <Run Text="{Binding Path=Klant.Bedrijf, FallbackValue='WOKU BVBA'}"/>
                       <LineBreak />
-                      <Run Text="{Binding Klant.Naam, FallbackValue='Jonas Vermeiren'}" />
+                      <Run Text="{Binding Path=Klant.Naam, FallbackValue='Jonas Vermeiren'}" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding chKlant, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chKlant, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
             </Border>
 
@@ -159,9 +159,9 @@
                     <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
                       <Run Text=" "/>
                       <LineBreak />
-                      <Run Text="{Binding AantalArtiesten, FallbackValue='2 artists'}" />
+                      <Run Text="{Binding Path=AantalArtiesten, FallbackValue='2 artists'}" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding chArtiesten, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chArtiesten, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
             </Border>
         </StackPanel>

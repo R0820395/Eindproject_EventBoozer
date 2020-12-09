@@ -29,16 +29,18 @@ namespace EventBooze.Events
 
         List<Event> events = new List<Event>();
         List<Notitie> notities = new List<Notitie>();
+        List<ToDo> toDos = new List<ToDo>();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Event Ev = dbOperations.eventOphalen(eventID);
-            
+            EventsDetails.DataContext = Ev;
             events = dbOperations.eventen();
             notities = dbOperations.notities();
-            
 
-            string AantalNotities = notities.Count() + "Notes";
-            MessageBox.Show(Ev.Eventnaam);
+
+            txtEventTypeNaam.Text = dbOperations.getEventType(1);
+            txtAantalNotities.Text = notities.Count() + " Notes";
+            txtAantalTodos.Text = dbOperations.getTodosCompletedCount() + " / " +  dbOperations.getAllTodosCount();
         }
 
 

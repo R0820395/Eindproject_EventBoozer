@@ -35,6 +35,39 @@ namespace DAL
             }
         }
 
+        public static string getEventType(int Id)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.Eventtype
+                    .Where(x => x.EventtypeID == Id)
+                    .Select(x => x.Naam);
+                return query.SingleOrDefault().ToString();
+            }
+        }
+
+        public static int getAllTodosCount()
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.ToDo;
+                return query.Count();
+            }
+        }
+
+        public static int getTodosCompletedCount()
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.ToDo
+                    .Where(x => x.Afgewerkt == true);
+                return query.Count();
+            }
+        }
+
+
+
+
         /*
         // EventTitle
         string EventName = "Rode neuzendag";
