@@ -30,6 +30,8 @@ namespace EventBooze
             InitializeComponent();
             huidigEvent = DatabaseOperations.OphalenEvent(4);
             //4 ==> EventIndex . Nu vier om te testen.
+            lblEvent.Content = huidigEvent.Eventnaam;
+            btnTerug.Content = "< " + huidigEvent.Eventnaam;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -65,8 +67,11 @@ namespace EventBooze
                 txtPhone.Text = klant.Telefoon;
                 btnDelete.IsEnabled = true;
                 btnSave.IsEnabled = false;
+                btnNieuw.IsEnabled = false;
+
+
             }
-            
+
         }
 
         private void cmbKlant_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -116,7 +121,7 @@ namespace EventBooze
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window nieuweKlantAanmaken = new KlantToevoegen();
+            Window nieuweKlantAanmaken = new KlantToevoegen(huidigEvent);
             nieuweKlantAanmaken.ShowDialog();
         }
 

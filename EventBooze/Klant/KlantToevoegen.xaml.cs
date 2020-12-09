@@ -21,9 +21,10 @@ namespace EventBooze
     /// </summary>
     public partial class KlantToevoegen : Window
     {
-        public KlantToevoegen()
+        public KlantToevoegen(Event huidigEvent)
         {
             InitializeComponent();
+            lblEvent.Content = huidigEvent.Eventnaam;
         }
 
         private void btnTerug_Click(object sender, RoutedEventArgs e)
