@@ -20,32 +20,57 @@ namespace DAL
 
         public static int aanpassenArtiest(Artiest artiest)
         {
-            using (EventEntities entities = new EventEntities())
+            try
             {
-                entities.Entry(artiest).State = System.Data.Entity.EntityState.Modified;
-                return entities.SaveChanges();
+                using (EventEntities entities = new EventEntities())
+                {
+                    entities.Entry(artiest).State = System.Data.Entity.EntityState.Modified;
+                    return entities.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+            
         }
 
         public static int toevoegenArtiest(Artiest artiest)
         {
-            using (EventEntities entities = new EventEntities())
+            try
             {
-                entities.Artiest.Add(artiest);
-                return entities.SaveChanges();
+                using (EventEntities entities = new EventEntities())
+                {
+                    entities.Artiest.Add(artiest);
+                    return entities.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+            
         }
 
         public static int verwijderenArtiest(Artiest artiest)
         {
-            using (EventEntities entities = new EventEntities())
+            try
             {
-                entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
-                return entities.SaveChanges();
+                using (EventEntities entities = new EventEntities())
+                {
+                    entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+
         }
-
-
 
         public static Event OphalenEvent(int eventId)
         {
