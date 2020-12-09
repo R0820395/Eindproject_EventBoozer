@@ -61,6 +61,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
+                FileOperations.FoutLoggen(ex);
                 return 0;
             }
         }
@@ -77,6 +78,8 @@ namespace DAL
             }
             catch(Exception ex)
             {
+                FileOperations.FoutLoggen(ex);
+
                 return 0;
             }
 
