@@ -74,7 +74,6 @@ namespace EventBooze
 
         public string Validatie()
         {
-            ArtiestenOverzicht artiestenOverzicht = new ArtiestenOverzicht();
             string foutmeldingen = "";
             if (string.IsNullOrWhiteSpace(txtArtiest.Text))
             {
