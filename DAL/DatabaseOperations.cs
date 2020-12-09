@@ -26,6 +26,15 @@ namespace DAL
             }
         }
 
+        public static int toevoegenArtiest(Artiest artiest)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                entities.Artiest.Add(artiest);
+                return entities.SaveChanges();
+            }
+        }
+
         public static Event OphalenEvent(int eventId)
         {
             using (EventEntities entities = new EventEntities())

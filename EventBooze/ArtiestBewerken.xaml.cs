@@ -44,11 +44,26 @@ namespace EventBooze
             string foutmeldingen = Validatie();
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                overzichtArtiest.Naam = txtArtiest.Text;
-                overzichtArtiest.Telefoon = txtTelefoonnummer.Text;
-                overzichtArtiest.Email = txtEmail.Text;
-                overzichtArtiest.Bankrekeningnr = txtBankaccount.Text;
-                var ok = DatabaseOperations.aanpassenArtiest(overzichtArtiest);
+                int ok;
+
+                if (overzichtArtiest != null)
+                {
+                    overzichtArtiest.Naam = txtArtiest.Text;
+                    overzichtArtiest.Telefoon = txtTelefoonnummer.Text;
+                    overzichtArtiest.Email = txtEmail.Text;
+                    overzichtArtiest.Bankrekeningnr = txtBankaccount.Text;
+                    ok = DatabaseOperations.aanpassenArtiest(overzichtArtiest);
+                }
+                else
+                {
+                    Artiest artiest = new Artiest();
+                    artiest.Naam = txtArtiest.Text;
+                    artiest.Telefoon = txtTelefoonnummer.Text;
+                    artiest.Email = txtEmail.Text;
+                    artiest.Bankrekeningnr = txtBankaccount.Text;
+                    ok = DatabaseOperations.toevoegenArtiest(artiest);
+                }
+
                 if (ok >= 1) {Close();};
             }
             else
