@@ -16,6 +16,7 @@
       Height="812" Width="375"
       Title="KlantSelectie" Loaded="Window_Loaded">
 
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -27,10 +28,12 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
+
         <StackPanel Orientation="Vertical" Grid.Row="0" Background="#FF001F89">
             <Label x:Name="lblTitel" Content="Klant" HorizontalAlignment="Center" FontSize="16" Foreground="#DDFFFFFF"/>
             <Label x:Name="lblKlant" Content="Event naam" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
         </StackPanel>
+        <Button Content="+" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Click="Button_Click"/>
 
         <Button x:Name="btnTerug" Content="&lt; Event naam" Margin="0" Width="auto" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B"/>
 
@@ -43,25 +46,25 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="3" Margin="20">
             <Label Content="Name" />
-            <TextBox x:Name="txtKlant" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtKlant" Background="LightGray" FontSize="16" IsEnabled="False"/>
 
             <Label Content="Street + nr" />
-            <TextBox x:Name="txtAdres" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtAdres" Background="LightGray" FontSize="16" IsEnabled="False"/>
 
             <Label Content="VAT" />
-            <TextBox x:Name="txtVAT" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtVAT" Background="LightGray" FontSize="16" IsEnabled="False"/>
         </StackPanel>
-        <Separator Grid.Row="3" VerticalAlignment="Bottom" Margin="20 0"/>
+        <Separator Grid.Row="3" VerticalAlignment="Bottom" Margin="20 0" IsEnabled="False"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="4" Margin="20">
             <Label Content="Contact name:" />
-            <TextBox x:Name="txtContact" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtContact" Background="LightGray" FontSize="16" IsEnabled="False"/>
 
             <Label Content="E-mail:" />
-            <TextBox x:Name="txtMail" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtMail" Background="LightGray" FontSize="16" IsEnabled="False"/>
 
             <Label Content="Phone:" />
-            <TextBox x:Name="txtPhone" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtPhone" Background="LightGray" FontSize="16" IsEnabled="False"/>
         </StackPanel>
 
         <Grid Grid.Row="5">
@@ -70,10 +73,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="btnDelete" Grid.Column="0" Content="Delete" Width="100" Margin="20"/>
-            <Button x:Name="btnSave" Grid.Column="1" Content="Save" Width="100"/>
+            <Button x:Name="btnDelete" Grid.Column="0" Content="Delete" Width="100" Margin="20" Click="btnDelete_Click" IsEnabled="False"/>
+            <Button x:Name="btnSave" Grid.Column="1" Content="Save" Width="100" Click="btnSave_Click" IsEnabled="False"/>
         </Grid>
-        
-        
+
+
+
     </Grid>
 </Window>

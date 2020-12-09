@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace DAL
 {
@@ -62,6 +63,23 @@ namespace DAL
             {
                 return 0;
             }
+        }
+
+        public static int AanpassenEvent(Event aangepastevent)
+        {
+            try
+            {
+                using (EventEntities entities = new EventEntities())
+                {
+                    entities.Entry(aangepastevent).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+
         }
 
 
