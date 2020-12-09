@@ -30,8 +30,7 @@ namespace EventBooze
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Artiesten = DatabaseOperations.ophalenArtiesten();
-            listBox.ItemsSource = Artiesten;
+            listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
 
             //foreach (var artiest in Artiesten)
             //{
@@ -41,26 +40,36 @@ namespace EventBooze
             //}
         }
 
-        private void btnAddArtist_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ArtiestBewerken artiestBewerken = new ArtiestBewerken();
             artiestBewerken.Show();
-            this.Close();
+            
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            listBox.SelectedItem.ToString();
+            Artiest artiest = (sender as Button).DataContext as Artiest;
+            var ok = DatabaseOperations.verwijderenArtiest(artiest);
+            if (ok>0)
+            {
+                listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
+                listBox.Items.Refresh();
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            Artiest artiest = (sender as Button).DataContext as Artiest;
+            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
+            artiestBewerken.overzichtArtiest = artiest;
+            artiestBewerken.Show();
+        }
 
+        private void Window_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Artiesten = DatabaseOperations.ophalenArtiesten();
+            listBox.ItemsSource = Artiesten;
         }
     }
 }

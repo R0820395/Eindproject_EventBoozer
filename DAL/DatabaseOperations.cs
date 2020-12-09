@@ -18,6 +18,35 @@ namespace DAL
             }
         }
 
+        public static int aanpassenArtiest(Artiest artiest)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Modified;
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int toevoegenArtiest(Artiest artiest)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                entities.Artiest.Add(artiest);
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int verwijderenArtiest(Artiest artiest)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+        }
+
+
+
         public static Event OphalenEvent(int eventId)
         {
             using (EventEntities entities = new EventEntities())
