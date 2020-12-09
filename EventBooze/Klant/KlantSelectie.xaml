@@ -35,7 +35,7 @@
         </StackPanel>
         <Button Content="+" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Click="Button_Click"/>
 
-        <Button x:Name="btnTerug" Content="&lt; Event naam" Margin="0" Width="auto" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B"/>
+        <Button x:Name="btnTerug" Content="&lt; Event naam" Margin="0" Width="auto" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B" Click="btnTerug_Click"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="2" Margin="20 0">
             <Label Content="Select Client:" />
