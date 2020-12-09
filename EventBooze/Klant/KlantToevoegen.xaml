@@ -32,42 +32,42 @@
             <Label x:Name="lblKlant" Content="Event naam" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
         </StackPanel>
 
-        <Button x:Name="btnTerug" Content="&lt; Event naam" Margin="0" Width="375" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B"/>
+        <Button x:Name="btnTerug" Content="&lt; Klantselectie" Margin="0" Width="375" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B" Click="btnTerug_Click"/>
 
 
 
         <Separator Grid.Row="1" VerticalAlignment="Bottom" Margin="20 0" />
 
-        <StackPanel Orientation="Vertical" Grid.Row="3" Margin="20">
+        <StackPanel Orientation="Vertical" Grid.Row="3" Margin="20" IsEnabled="True">
             <Label Content="Name" />
-            <TextBlock x:Name="txtKlant" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtKlant" Background="LightGray" FontSize="16"/>
 
             <Label Content="Street" />
-            <TextBlock x:Name="txtStraat" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtStraat" Background="LightGray" FontSize="16"/>
             
             <Label Content="nr" />
-            <TextBlock x:Name="txtNummer" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtNummer" Background="LightGray" FontSize="16"/>
 
             <Label Content="Postal code" />
-            <TextBlock x:Name="txtPostcode" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtPostcode" Background="LightGray" FontSize="16"/>
 
             <Label Content="City" />
-            <TextBlock x:Name="txtStad" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtStad" Background="LightGray" FontSize="16"/>
 
             <Label Content="VAT" />
-            <TextBlock x:Name="txtVAT" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtVAT" Background="LightGray" FontSize="16"/>
         </StackPanel>
         <Separator Grid.Row="3" VerticalAlignment="Bottom" Margin="20 0"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="4" Margin="20">
             <Label Content="Contact name:" />
-            <TextBlock x:Name="txtcontact" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtcontact" Background="LightGray" FontSize="16"/>
 
             <Label Content="E-mail:" />
-            <TextBlock x:Name="txtmail" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtmail" Background="LightGray" FontSize="16"/>
 
             <Label Content="Phone:" />
-            <TextBlock x:Name="txtphone" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtphone" Background="LightGray" FontSize="16"/>
         </StackPanel>
 
         <Grid Grid.Row="5">
@@ -76,7 +76,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="btnSave" Grid.Column="1" Content="Save" Width="100"/>
+            <Button x:Name="btnSave" Grid.Column="1" Content="Save" Width="100" Click="btnSave_Click"/>
         </Grid>
 
 
