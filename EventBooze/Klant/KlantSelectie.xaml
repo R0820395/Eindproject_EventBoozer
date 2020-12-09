@@ -43,25 +43,25 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="3" Margin="20">
             <Label Content="Name" />
-            <TextBlock x:Name="txtKlant" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtKlant" Background="LightGray" FontSize="16"/>
 
             <Label Content="Street + nr" />
-            <TextBlock x:Name="txtAdres" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtAdres" Background="LightGray" FontSize="16"/>
 
             <Label Content="VAT" />
-            <TextBlock x:Name="txtVAT" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtVAT" Background="LightGray" FontSize="16"/>
         </StackPanel>
         <Separator Grid.Row="3" VerticalAlignment="Bottom" Margin="20 0"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="4" Margin="20">
             <Label Content="Contact name:" />
-            <TextBlock x:Name="txtContact" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtContact" Background="LightGray" FontSize="16"/>
 
             <Label Content="E-mail:" />
-            <TextBlock x:Name="txtMail" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtMail" Background="LightGray" FontSize="16"/>
 
             <Label Content="Phone:" />
-            <TextBlock x:Name="txtPhone" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtPhone" Background="LightGray" FontSize="16"/>
         </StackPanel>
 
         <Grid Grid.Row="5">

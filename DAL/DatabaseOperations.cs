@@ -47,5 +47,23 @@ namespace DAL
                   
             }
         }
+
+        public static int ToevoegenKlant(Klant klant)
+        {
+            try
+            {
+                using (EventEntities entities = new EventEntities())
+                {
+                    entities.Klant.Add(klant);
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+
     }
 }
