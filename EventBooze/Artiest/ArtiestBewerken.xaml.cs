@@ -32,6 +32,7 @@ namespace EventBooze
             if (overzichtArtiest != null)
             {
                 txtArtiest.Text = this.overzichtArtiest.Naam;
+                lblNaamArtiest.Content = txtArtiest.Text;
                 txtTelefoonnummer.Text = this.overzichtArtiest.Telefoon;
                 txtEmail.Text = this.overzichtArtiest.Email;
                 txtBankaccount.Text = this.overzichtArtiest.Bankrekeningnr;
@@ -99,6 +100,10 @@ namespace EventBooze
             return foutmeldingen;
         }
 
-       
+        private void txtArtiest_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lblNaamArtiest.Content = txtArtiest.Text;
+            
+        }
     }
 }
