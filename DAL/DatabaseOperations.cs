@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace DAL
 {
@@ -16,6 +17,35 @@ namespace DAL
                 return query.ToList();
             }
         }
+
+        public static int aanpassenArtiest(Artiest artiest)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Modified;
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int toevoegenArtiest(Artiest artiest)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                entities.Artiest.Add(artiest);
+                return entities.SaveChanges();
+            }
+        }
+
+        public static int verwijderenArtiest(Artiest artiest)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+        }
+
+
 
         public static Event OphalenEvent(int eventId)
         {
@@ -62,6 +92,23 @@ namespace DAL
             {
                 return 0;
             }
+        }
+
+        public static int AanpassenEvent(Event aangepastevent)
+        {
+            try
+            {
+                using (EventEntities entities = new EventEntities())
+                {
+                    entities.Entry(aangepastevent).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+
         }
 
 
