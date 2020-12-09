@@ -28,7 +28,7 @@ namespace EventBooze
 
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Close();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

@@ -119,5 +119,10 @@ namespace EventBooze
             Window nieuweKlantAanmaken = new KlantToevoegen();
             nieuweKlantAanmaken.ShowDialog();
         }
+
+        private void btnTerug_Click(object sender, RoutedEventArgs e)
+        {
+            //Terug naar Event overzicht (Dieter)
+        }
     }
 }
