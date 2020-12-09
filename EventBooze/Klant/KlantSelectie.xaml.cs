@@ -23,7 +23,7 @@ namespace EventBooze
     public partial class KlantSelectie : Window
     {
         Event huidigEvent = new Event();
-
+        Klant nieuweklant = new Klant();
         public KlantSelectie()
         {
             //public KlantSelectie(int EventIndex) Afgezet wegens testen.
@@ -34,6 +34,7 @@ namespace EventBooze
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             List<Klant> alleklanten = new List<Klant>(); 
 
             if (huidigEvent.KlantID == null)
@@ -62,13 +63,66 @@ namespace EventBooze
                 txtContact.Text = klant.Contactnaam;
                 txtMail.Text = klant.Email;
                 txtPhone.Text = klant.Telefoon;
+                btnDelete.IsEnabled = true;
+                btnSave.IsEnabled = false;
             }
             
         }
 
         private void cmbKlant_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          //  Klant klant = cmbKlant.SelectedItem.
+            nieuweklant = (Klant)cmbKlant.SelectedItem;
+            txtKlant.Text = nieuweklant.Naam;
+            txtAdres.Text = nieuweklant.Straat + " " + nieuweklant.Huisnr;
+            txtVAT.Text = nieuweklant.BTWnummer;
+            txtContact.Text = nieuweklant.Contactnaam;
+            txtMail.Text = nieuweklant.Email;
+            txtPhone.Text = nieuweklant.Telefoon;
+            btnSave.IsEnabled = true;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            huidigEvent.KlantID = nieuweklant.KlantID;
+            int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
+            
+            if(geslaagd == 0)
+            {
+                MessageBox.Show("De klant kon niet worden toegewezen. Contacteer Helpdesk", "Melding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+            
+            
+            MessageBox.Show("De klant is toegewezen aan dit Event", "Melding", MessageBoxButton.OK);
+            //terug naar vorige pagina
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            huidigEvent.KlantID = null;
+            int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
+
+            if(geslaagd == 0)
+            {
+                MessageBox.Show("De klant kon niet worden verwijderd. Contacteer Helpdesk", "Melding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show("De klant is verwijderd van dit Event", "Melding", MessageBoxButton.OK);
+            }
+
+            //terug naar vorige pagina
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window nieuweKlantAanmaken = new KlantToevoegen();
+            nieuweKlantAanmaken.ShowDialog();
+        }
+
+        private void btnTerug_Click(object sender, RoutedEventArgs e)
+        {
+            //Terug naar Event overzicht (Dieter)
         }
     }
 }
