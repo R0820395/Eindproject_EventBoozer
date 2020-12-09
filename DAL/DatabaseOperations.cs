@@ -35,6 +35,17 @@ namespace DAL
             }
         }
 
+        public static int verwijderenArtiest(Artiest artiest)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
+                return entities.SaveChanges();
+            }
+        }
+
+
+
         public static Event OphalenEvent(int eventId)
         {
             using (EventEntities entities = new EventEntities())
