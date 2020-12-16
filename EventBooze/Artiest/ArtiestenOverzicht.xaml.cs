@@ -20,9 +20,11 @@ namespace EventBooze
     /// </summary>
     public partial class ArtiestenOverzicht : Window
     {
-        public ArtiestenOverzicht()
+        int eventnummer;
+        public ArtiestenOverzicht(int eventID)
         {
             InitializeComponent();
+            eventnummer = eventID;
 
         }
 
@@ -30,7 +32,7 @@ namespace EventBooze
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
+            listBox.ItemsSource = DatabaseOperations.ophalenArtiesten(eventnummer);
         }
 
         //cud
@@ -41,7 +43,7 @@ namespace EventBooze
             var ok = DatabaseOperations.verwijderenArtiest(artiest);
             if (ok > 0)
             {
-                listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
+                listBox.ItemsSource = DatabaseOperations.ophalenArtiesten(eventnummer);
                 listBox.Items.Refresh();
             }
         }
@@ -56,7 +58,7 @@ namespace EventBooze
 
         private void Window_MouseEnter(object sender, MouseEventArgs e)
         {
-            Artiesten = DatabaseOperations.ophalenArtiesten();
+            Artiesten = DatabaseOperations.ophalenArtiesten(eventnummer);
             listBox.ItemsSource = Artiesten;
         }
 
