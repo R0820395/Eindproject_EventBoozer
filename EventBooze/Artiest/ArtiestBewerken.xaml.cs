@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 using DAL;
 
 namespace EventBooze
@@ -58,6 +59,7 @@ namespace EventBooze
                 else
                 {
                     Artiest artiest = new Artiest();
+                    artiest.EventID = 4;
                     artiest.Naam = txtArtiest.Text;
                     artiest.Telefoon = txtTelefoonnummer.Text;
                     artiest.Email = txtEmail.Text;
@@ -96,7 +98,12 @@ namespace EventBooze
             {
                 foutmeldingen += "Bankaccount: verplicht" + Environment.NewLine;
             }
+            if (!Regex.Match(txtBankaccount.Text, @"^BE\d{14}$").Success)
+            {
+                foutmeldingen += "Bankaccount: verplicht" + Environment.NewLine;
+            }
 
+            
             return foutmeldingen;
         }
 
@@ -104,6 +111,11 @@ namespace EventBooze
         {
             lblNaamArtiest.Content = txtArtiest.Text;
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
