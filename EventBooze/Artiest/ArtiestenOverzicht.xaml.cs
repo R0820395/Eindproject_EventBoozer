@@ -20,44 +20,28 @@ namespace EventBooze
     /// </summary>
     public partial class ArtiestenOverzicht : Window
     {
-        int eventnummer;
-        List<Artiest> artiestenlijst = new List<Artiest>();
-
-        public ArtiestenOverzicht(int eventID)
+        public ArtiestenOverzicht()
         {
             InitializeComponent();
-            eventnummer = eventID;
+
         }
 
         List<Artiest> Artiesten = new List<Artiest>();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            artiestenlijst = DatabaseOperations.ophalenArtiesten(eventnummer);
-            listBox.ItemsSource = artiestenlijst;
-
-            //foreach (var artiest in Artiesten)
-            //{
-            //    var naam = artiest.Naam;
-            //    var email = artiest.Email;
-            //    var telefoon = artiest.Telefoon;
-            //}
+            listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
-            artiestBewerken.Show();
-            
-        }
+        //cud
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Artiest artiest = (sender as Button).DataContext as Artiest;
             var ok = DatabaseOperations.verwijderenArtiest(artiest);
-            if (ok>0)
+            if (ok > 0)
             {
-                listBox.ItemsSource = artiestenlijst;
+                listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
                 listBox.Items.Refresh();
             }
         }
@@ -72,8 +56,14 @@ namespace EventBooze
 
         private void Window_MouseEnter(object sender, MouseEventArgs e)
         {
+            Artiesten = DatabaseOperations.ophalenArtiesten();
+            listBox.ItemsSource = Artiesten;
+        }
 
-            listBox.ItemsSource = artiestenlijst;
+        private void btnNieuw_Click(object sender, RoutedEventArgs e)
+        {
+            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
+            artiestBewerken.Show();
         }
     }
 }

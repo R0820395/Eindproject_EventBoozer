@@ -67,7 +67,7 @@ namespace EventBooze
                     ok = DatabaseOperations.toevoegenArtiest(artiest);
                 }
 
-                if (ok >= 1) {Close();};
+                if (ok >= 1) { Close(); };
             }
             else
             {
@@ -87,7 +87,7 @@ namespace EventBooze
                 foutmeldingen += "Telefoonnummer: verplicht" + Environment.NewLine;
             }
             if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
-            {            
+            {
                 foutmeldingen += "Email: niet geldig" + Environment.NewLine;
             }
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
@@ -103,14 +103,14 @@ namespace EventBooze
                 foutmeldingen += "Bankaccount: verplicht" + Environment.NewLine;
             }
 
-            
+
             return foutmeldingen;
         }
 
         private void txtArtiest_TextChanged(object sender, TextChangedEventArgs e)
         {
             lblNaamArtiest.Content = txtArtiest.Text;
-            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
