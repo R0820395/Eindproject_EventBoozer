@@ -85,6 +85,7 @@
     <Compile Include="Eventtype.cs">
       <DependentUpon>Eventmodel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FileOperations.cs" />
     <Compile Include="Klant.cs">
       <DependentUpon>Eventmodel.tt</DependentUpon>
     </Compile>

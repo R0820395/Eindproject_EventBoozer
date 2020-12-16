@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Navigation;
+﻿/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*+======================================================================= Gemaakt door: Nisse ============================================================================================+*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 using DAL;
+using System;
+using System.Windows;
 
 namespace EventBooze
 {
@@ -21,21 +13,22 @@ namespace EventBooze
     /// </summary>
     public partial class KlantToevoegen : Window
     {
-        public KlantToevoegen()
+        public KlantToevoegen(Event huidigEvent)
         {
             InitializeComponent();
+            lblEvent.Content = huidigEvent.Eventnaam;
         }
 
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Close();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             string foutmelding = Validatie();
 
-            if(foutmelding == "")
+            if (foutmelding == "")
             {
                 Klant nieuweklant = new Klant();
                 nieuweklant.Naam = txtKlant.Text;
@@ -50,7 +43,7 @@ namespace EventBooze
 
                 int geslaagd = DatabaseOperations.ToevoegenKlant(nieuweklant);
 
-                if(geslaagd == 0)
+                if (geslaagd == 0)
                 {
                     MessageBox.Show("De klant kon niet worden toegevoegd omwille van onbekende reden", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -59,7 +52,6 @@ namespace EventBooze
                     MessageBox.Show("De klant is toegevoegd.");
                     this.Close();
                 }
-
             }
             else
             {
@@ -67,11 +59,9 @@ namespace EventBooze
             }
         }
 
-
         private string Validatie()
         {
             string foutmelding = "";
-
 
             if (!txtmail.Text.Contains("@"))
             {
@@ -80,13 +70,14 @@ namespace EventBooze
             if (txtVAT.Text.Length < 4)
             {
                 foutmelding += "Het opgegeven BTW nummer is te kort." + Environment.NewLine;
-            } else if (txtVAT.Text.Substring(0, 3) != "BTW" || txtVAT.Text is null) {
+            }
+            else if (txtVAT.Text.Substring(0, 3) != "BTW" || txtVAT.Text is null)
+            {
                 foutmelding += "Het opgegeven BTW nummer is niet correct." + Environment.NewLine;
             }
 
-
             //Numeriek is in principe fout. Het zou in principe een string moeten zijn.
-            if(!int.TryParse(txtNummer.Text, out int huisnummer))
+            if (!int.TryParse(txtNummer.Text, out int huisnummer))
             {
                 foutmelding += "Het opgegeven huisnummer is niet nummeriek!" + Environment.NewLine;
             }

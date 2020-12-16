@@ -29,7 +29,7 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="0" Background="#FF001F89">
             <Label x:Name="lblTitel" Content="Klant" HorizontalAlignment="Center" FontSize="16" Foreground="#DDFFFFFF"/>
-            <Label x:Name="lblKlant" Content="Event naam" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
+            <Label x:Name="lblEvent" Content="Event naam" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
         </StackPanel>
 
         <Button x:Name="btnTerug" Content="&lt; Klantselectie" Margin="0" Width="375" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B" Click="btnTerug_Click"/>
