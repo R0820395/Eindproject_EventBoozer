@@ -15,23 +15,21 @@ namespace EventBooze
     /// </summary>
     public partial class KlantSelectie : Window
     {
-        private Event huidigEvent = new Event();
-        private Klant nieuweklant = new Klant();
-
-        public KlantSelectie()
+        Event huidigEvent = new Event();
+        Klant nieuweklant = new Klant();
+        public KlantSelectie(int eventIndex)
         {
-            //public KlantSelectie(int EventIndex) Afgezet wegens testen.
             InitializeComponent();
-            huidigEvent = DatabaseOperations.OphalenEvent(4);
-            //4 ==> EventIndex . Nu vier om te testen.
-            lblEvent.Content = huidigEvent.Eventnaam;
-            btnTerug.Content = "< " + huidigEvent.Eventnaam;
+            huidigEvent = DatabaseOperations.OphalenEvent(eventIndex);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Klant> alleklanten = new List<Klant>();
 
+            List<Klant> alleklanten = new List<Klant>();
+            txtEventNaam.Text = huidigEvent.Eventnaam;
+            txtEventTypeNaam.Text = huidigEvent.Eventtype.Naam;
+            btnTerug.Content = "< " + huidigEvent.Eventnaam;
             if (huidigEvent.KlantID == null)
             {
                 alleklanten = DatabaseOperations.OphalenKlanten();
@@ -49,7 +47,6 @@ namespace EventBooze
             {
                 Klant klant = DatabaseOperations.OphalenKlant(huidigEvent.KlantID);
                 alleklanten.Add(klant);
-                //Dit verder bekijken waarom cmb default niet getoond wordt.
                 cmbKlant.ItemsSource = alleklanten;
                 cmbKlant.SelectedIndex = 0;
                 txtKlant.Text = klant.Naam;
@@ -93,6 +90,7 @@ namespace EventBooze
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             huidigEvent.KlantID = null;
+            huidigEvent.Klant = null;
             int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
 
             if (geslaagd == 0)
@@ -104,18 +102,18 @@ namespace EventBooze
                 MessageBox.Show("De klant is verwijderd van dit Event", "Melding", MessageBoxButton.OK);
             }
 
-            //terug naar vorige pagina
+            this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window nieuweKlantAanmaken = new KlantToevoegen(huidigEvent);
+            Window nieuweKlantAanmaken = new KlantToevoegen(huidigEvent.EventID);
             nieuweKlantAanmaken.ShowDialog();
         }
 
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
-            //Terug naar Event overzicht (Dieter)
+            this.Close();
         }
     }
 }

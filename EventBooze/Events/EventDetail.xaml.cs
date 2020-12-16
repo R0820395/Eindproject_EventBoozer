@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Nisse
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -142,8 +144,20 @@ namespace EventBooze.Events
                 MessageBox.Show("EV failed");
             }
 
+            runAantalArtiesten.Text = DatabaseOperations.ophalenArtiesten(Ev.EventID).Count().ToString() + " artists";
 
-        } 
+        }
 
+        private void btnClient_Click(object sender, RoutedEventArgs e)
+        {
+            Window klantselectie = new KlantSelectie(eventID);
+            klantselectie.ShowDialog();
+        }
+
+        private void btnArtist_Click(object sender, RoutedEventArgs e)
+        {
+            Window artiestenoverzicht = new ArtiestenOverzicht(eventID);
+            artiestenoverzicht.ShowDialog();
+        }
     }
 }

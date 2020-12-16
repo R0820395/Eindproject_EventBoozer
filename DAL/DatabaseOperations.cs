@@ -13,11 +13,12 @@ namespace DAL
 {
     public static class DatabaseOperations
     {
-        public static List<Artiest> ophalenArtiesten()
+        public static List<Artiest> ophalenArtiesten(int eventID)
         {
             using (EventEntities entities = new EventEntities())
             {
-                var query = entities.Artiest;
+                var query = entities.Artiest
+                    .Where(x => x.EventID == eventID);
                 return query.ToList();
             }
         }
@@ -81,6 +82,12 @@ namespace DAL
             using (EventEntities entities = new EventEntities())
             {
                 var query = entities.Event
+                    .Include(x => x.Notities)
+                    .Include(x => x.Klant)
+                    .Include(x => x.Eventtype)
+                    .Include(x => x.ToDos)
+                    .Include(x => x.Locatie)
+        
                     .Where(x => x.EventID == eventId);
                 return query.SingleOrDefault();
             }
@@ -139,5 +146,30 @@ namespace DAL
                 return 0;
             }
         }
+
+        public static int getAllTodosCount(int eventID)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.ToDo
+                    .Where(x => x.EventID == eventID);
+                return query.Count();
+            }
+        }
+
+        public static int getTodosCompletedCount(int eventID)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.ToDo
+                    .Where(x => x.Afgewerkt == true)
+                    .Where(x => x.EventID == eventID);
+                return query.Count();
+            }
+        }
+
+
+
+
     }
 }
