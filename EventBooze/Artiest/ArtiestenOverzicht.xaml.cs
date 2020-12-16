@@ -33,12 +33,7 @@ namespace EventBooze
             listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
-            artiestBewerken.Show();
-            
-        }
+        
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -63,6 +58,12 @@ namespace EventBooze
         {
             Artiesten = DatabaseOperations.ophalenArtiesten();
             listBox.ItemsSource = Artiesten;
+        }
+
+        private void btnNieuw_Click(object sender, RoutedEventArgs e)
+        {
+            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
+            artiestBewerken.Show();
         }
     }
 }

@@ -11,14 +11,18 @@
             
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition  Height="auto"/>
         </Grid.RowDefinitions>
-        <Label Content="artiesten overzicht"></Label>
-        
-        <Button Grid.Row="1" Content="edit" Margin="5 5 200 5" Click="Button_Click"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF001F89">
+            <Label  Content="Artiest" HorizontalAlignment="Center" FontSize="16" Foreground="#DDFFFFFF"/>
+            <Label  x:Name="lblNaamArtiest" Content="" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
+        </StackPanel>
+        <Button x:Name="btnNieuw" Click="btnNieuw_Click"  Content="+" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" />
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="&lt; Home" Margin="0 0 0 5"  HorizontalContentAlignment="Left" Background="#FF4B4B4B"/>
         <ListBox Grid.Row="2" x:Name="listBox" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -26,9 +30,9 @@
                         <TextBlock Text="{Binding Path=Naam}" />
                         <TextBlock Text="{Binding Path=Email}"/>
                         <TextBlock Text="{Binding Path=Telefoon}"/>
-                        <StackPanel Orientation="Horizontal">
-                            <Button x:Name="btnDelete" Click="btnDelete_Click">Delete</Button>
-                            <Button x:Name="btnEdit" Click="btnEdit_Click">Edit</Button>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="btnDelete" Click="btnDelete_Click" Background="#FFFF3A3A" >Delete</Button>
+                            <Button x:Name="btnEdit" Click="btnEdit_Click" Background="Green">Edit</Button>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
