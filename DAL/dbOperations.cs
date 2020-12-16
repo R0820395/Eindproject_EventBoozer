@@ -65,7 +65,31 @@ namespace DAL
             }
         }
 
+        public static Locatie getLocatie(int id)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var q = entities.Locatie
+                    .Where(x => x.LocatieID == id);
+                return q.SingleOrDefault();
+            }
+        }
 
+        public static Klant GetKlant(int id)
+        {
+            try
+            {
+                using (EventEntities entities = new EventEntities())
+                {
+                    var q = entities.Klant
+                        .Where(x => x.KlantID == id);
+                    return q.SingleOrDefault();
+                }
+            }catch(Exception ex)
+            {
+                return new Klant();
+            }
+        }
 
 
         /*

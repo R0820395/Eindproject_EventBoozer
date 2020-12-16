@@ -108,9 +108,9 @@
 
                     <Label Content="LOCATION" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
                     <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
-                      <Run Text="{Binding Path=Event.Locatie.adres, FallbackValue='Feestzaal Den Eyck'}"/>
+                      <Run x:Name="txtLocatieNaam"/>
                       <LineBreak />
-                      <Run Text="{Binding Path=Event.Locatie.plaats, FallbackValue='Kasterlee'}" />
+                      <Run x:Name="txtLocatieGemeente" />
                     </TextBlock>
                     <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chLocatie, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
@@ -134,9 +134,9 @@
                     </Viewbox>
                     <Label Content="CLIENT" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
                     <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
-                      <Run Text="{Binding Path=Klant.Bedrijf, FallbackValue='WOKU BVBA'}"/>
+                      <Run x:Name="txtKlantContactnaam"/>
                       <LineBreak />
-                      <Run Text="{Binding Path=Klant.Naam, FallbackValue='Jonas Vermeiren'}" />
+                      <Run x:Name="txtKlantnaam" />
                     </TextBlock>
                     <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chKlant, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
