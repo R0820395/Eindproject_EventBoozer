@@ -1,12 +1,19 @@
-﻿/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+======================================================================= Gemaakt door: Nisse ============================================================================================+*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-using DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using DAL;
 
 namespace EventBooze
 {
@@ -35,7 +42,7 @@ namespace EventBooze
                 alleklanten = DatabaseOperations.OphalenKlanten();
                 List<String> namenlijst = new List<String>();
 
-                foreach (Klant klant in alleklanten)
+                foreach(Klant klant in alleklanten)
                 {
                     namenlijst.Add(klant.Naam);
                 }
@@ -57,8 +64,8 @@ namespace EventBooze
                 txtPhone.Text = klant.Telefoon;
                 btnDelete.IsEnabled = true;
                 btnSave.IsEnabled = false;
-                btnNieuw.IsEnabled = false;
             }
+            
         }
 
         private void cmbKlant_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,12 +84,14 @@ namespace EventBooze
         {
             huidigEvent.KlantID = nieuweklant.KlantID;
             int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
-
-            if (geslaagd == 0)
+            
+            if(geslaagd == 0)
             {
                 MessageBox.Show("De klant kon niet worden toegewezen. Contacteer Helpdesk", "Melding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            
+            
+            
             MessageBox.Show("De klant is toegewezen aan dit Event", "Melding", MessageBoxButton.OK);
             //terug naar vorige pagina
         }
@@ -93,7 +102,7 @@ namespace EventBooze
             huidigEvent.Klant = null;
             int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
 
-            if (geslaagd == 0)
+            if(geslaagd == 0)
             {
                 MessageBox.Show("De klant kon niet worden verwijderd. Contacteer Helpdesk", "Melding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -115,5 +124,6 @@ namespace EventBooze
         {
             this.Close();
         }
+
     }
 }

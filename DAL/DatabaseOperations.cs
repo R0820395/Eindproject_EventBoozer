@@ -1,13 +1,9 @@
-﻿/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+======================================================================= Artiesten:   Jan ===============================================================================================+*/
-/*+======================================================================= Klanten:     Nisse =============================================================================================+*/
-/*+======================================================================= Events:      Dieter ============================================================================================+*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace DAL
 {
@@ -15,7 +11,7 @@ namespace DAL
     {
         public static List<Artiest> ophalenArtiesten(int eventID)
         {
-            using (EventEntities entities = new EventEntities())
+            using (EventEntities entities = new EventEntities() )
             {
                 var query = entities.Artiest
                     .Where(x => x.EventID == eventID);
@@ -25,57 +21,32 @@ namespace DAL
 
         public static int aanpassenArtiest(Artiest artiest)
         {
-            try
+            using (EventEntities entities = new EventEntities())
             {
-                using (EventEntities entities = new EventEntities())
-                {
-                    entities.Entry(artiest).State = System.Data.Entity.EntityState.Modified;
-                    return entities.SaveChanges();
-                }
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Modified;
+                return entities.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                FileOperations.FoutLoggen(ex);
-                return 0;
-            }
-            
         }
 
         public static int toevoegenArtiest(Artiest artiest)
         {
-            try
+            using (EventEntities entities = new EventEntities())
             {
-                using (EventEntities entities = new EventEntities())
-                {
-                    entities.Artiest.Add(artiest);
-                    return entities.SaveChanges();
-                }
+                entities.Artiest.Add(artiest);
+                return entities.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                FileOperations.FoutLoggen(ex);
-                return 0;
-            }
-            
         }
 
         public static int verwijderenArtiest(Artiest artiest)
         {
-            try
+            using (EventEntities entities = new EventEntities())
             {
-                using (EventEntities entities = new EventEntities())
-                {
-                    entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
-                    return entities.SaveChanges();
-                }
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
+                return entities.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                FileOperations.FoutLoggen(ex);
-                return 0;
-            }
-
         }
+
+
 
         public static Event OphalenEvent(int eventId)
         {
@@ -104,11 +75,13 @@ namespace DAL
 
         public static Klant OphalenKlant(int? klantId)
         {
-            using (EventEntities entities = new EventEntities())
+
+            using (EventEntities entities = new EventEntities()) 
             {
                 var query = entities.Klant
                     .Where(x => x.KlantID == klantId);
                 return query.SingleOrDefault();
+                  
             }
         }
 
@@ -124,7 +97,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                FileOperations.FoutLoggen(ex);
                 return 0;
             }
         }
@@ -139,12 +111,11 @@ namespace DAL
                     return entities.SaveChanges();
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                FileOperations.FoutLoggen(ex);
-
                 return 0;
             }
+
         }
 
         public static int getAllTodosCount(int eventID)

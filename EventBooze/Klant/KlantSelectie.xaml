@@ -45,7 +45,7 @@
                 </TextBlock>
             </Label.Content>
         </Label>
-        <Button Content="+" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Click="Button_Click"/>
+        <Button x:Name="btnNieuw" Content="+" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" Click="Button_Click"/>
 
         <StackPanel Grid.Row="1" Orientation="Vertical">
             <Grid>

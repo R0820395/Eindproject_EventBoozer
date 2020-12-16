@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 using DAL;
 
 namespace EventBooze
@@ -58,6 +59,7 @@ namespace EventBooze
                 else
                 {
                     Artiest artiest = new Artiest();
+                    artiest.EventID = 4;
                     artiest.Naam = txtArtiest.Text;
                     artiest.Telefoon = txtTelefoonnummer.Text;
                     artiest.Email = txtEmail.Text;
@@ -65,7 +67,7 @@ namespace EventBooze
                     ok = DatabaseOperations.toevoegenArtiest(artiest);
                 }
 
-                if (ok >= 1) {Close();};
+                if (ok >= 1) { Close(); };
             }
             else
             {
@@ -85,7 +87,7 @@ namespace EventBooze
                 foutmeldingen += "Telefoonnummer: verplicht" + Environment.NewLine;
             }
             if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
-            {            
+            {
                 foutmeldingen += "Email: niet geldig" + Environment.NewLine;
             }
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
@@ -96,6 +98,11 @@ namespace EventBooze
             {
                 foutmeldingen += "Bankaccount: verplicht" + Environment.NewLine;
             }
+            if (!Regex.Match(txtBankaccount.Text, @"^BE\d{14}$").Success)
+            {
+                foutmeldingen += "Bankaccount: verplicht" + Environment.NewLine;
+            }
+
 
             return foutmeldingen;
         }
@@ -103,7 +110,12 @@ namespace EventBooze
         private void txtArtiest_TextChanged(object sender, TextChangedEventArgs e)
         {
             lblNaamArtiest.Content = txtArtiest.Text;
-            
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
