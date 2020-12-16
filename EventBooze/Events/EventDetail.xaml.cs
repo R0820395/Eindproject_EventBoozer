@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Nisse
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,23 +29,47 @@ namespace EventBooze.Events
 
         int eventID = 4;
 
-        List<Event> events = new List<Event>();
-        List<Notitie> notities = new List<Notitie>();
         List<ToDo> toDos = new List<ToDo>();
+        Klant klant = new Klant();
+        Event Ev = new Event();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Event Ev = dbOperations.eventOphalen(eventID);
-            EventsDetails.DataContext = Ev;
-            events = dbOperations.eventen();
-            notities = dbOperations.notities();
+            Event Ev = DatabaseOperations.OphalenEvent(eventID);
+            int notities = Ev.Notities.Count();
+            klant = Ev.Klant;
+            txtEventNaam.Text = Ev.Eventnaam;
+            txtEventTypeNaam.Text = Ev.Eventtype.Naam;
+
+            txtAantalNotities.Text = notities + " Notes";
+            txtAantalTodos.Text = DatabaseOperations.getTodosCompletedCount(Ev.EventID) + " / " +  DatabaseOperations.getAllTodosCount(Ev.EventID);
+            
+            if(Ev.Klant != null)
+            {
+                runKlantNaam.Text = klant.Naam;
+                runKlantContact.Text = klant.Contactnaam;
+            }
+            
+            if(Ev.Locatie != null)
+            {
+                runKlantAdres.Text = Ev.Locatie.Naam;
+                runKlantPlaats.Text = Ev.Locatie.Gemeente;
+            }
 
 
-            txtEventTypeNaam.Text = dbOperations.getEventType(1);
-            txtAantalNotities.Text = notities.Count() + " Notes";
-            txtAantalTodos.Text = dbOperations.getTodosCompletedCount() + " / " +  dbOperations.getAllTodosCount();
+            runAantalArtiesten.Text = DatabaseOperations.ophalenArtiesten(Ev.EventID).Count().ToString() + " artists";
+
         }
 
+        private void btnClient_Click(object sender, RoutedEventArgs e)
+        {
+            Window klantselectie = new KlantSelectie(eventID);
+            klantselectie.ShowDialog();
+        }
 
-
+        private void btnArtist_Click(object sender, RoutedEventArgs e)
+        {
+            Window artiestenoverzicht = new ArtiestenOverzicht(eventID);
+            artiestenoverzicht.ShowDialog();
+        }
     }
 }

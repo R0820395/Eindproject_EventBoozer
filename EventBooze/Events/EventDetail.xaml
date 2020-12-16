@@ -14,7 +14,7 @@
             Background="{DynamicResource MaterialDesignPaper}"
             FontFamily="{DynamicResource MaterialDesignFont}"
         Title="EventDetail"        
-        Width="375" Height="812" Loaded="Window_Loaded" x:Name="EventsDetails">
+        Width="375" Height="812" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
             <Label.Content>
-                <TextBlock Text="{Binding Path=Eventnaam, FallbackValue='&#160;EventNaam&#160;'}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock x:Name="txtEventNaam" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock.TextDecorations>
                         <TextDecoration Location="Underline">
                             <TextDecoration.Pen>
@@ -33,137 +33,145 @@
                 </TextBlock>
             </Label.Content>
         </Label>
-        <Label Background="Black" Foreground="#e0e0e0" FontSize="13" Margin="0 55 0 15" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Panel.ZIndex="2">
+        <Label  Background="Black" Foreground="#e0e0e0" FontSize="13" Margin="0 55 0 15" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Panel.ZIndex="2">
             <Label.Content>
                 <TextBlock x:Name="txtEventTypeNaam" VerticalAlignment="Center" HorizontalAlignment="Center">
                 </TextBlock>
             </Label.Content>
         </Label>
         <StackPanel Grid.Row="1" Orientation="Vertical">
-            <Border BorderBrush="Black" BorderThickness="1">
+            <Button x:Name="btnNotes" Height="auto" Background="Transparent" Width="auto" Margin="0" BorderThickness="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75"/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="75"/>
                     </Grid.ColumnDefinitions>
-                    <Viewbox Grid.RowSpan="3" Height="70" Width="70" Margin="10 0 0 0">
+                    <Viewbox Grid.RowSpan="3" Height="70" Width="70">
                         <Canvas Width="24" Height="24">
                             <Path Fill="Black" Data="M3 7V5H5V4C5 2.9 5.9 2 7 2H13V9L15.5 7.5L18 9V2H19C20 2 21 3 21 4V13.8C20.1 13.3 19.1 13 18 13C14.7 13 12 15.7 12 19C12 20.1 12.3 21.1 12.8 22H7C5.9 22 5 21 5 20V19H3V17H5V13H3V11H5V7H3M5 5V7H7V5H5M5 19H7V17H5V19M5 13H7V11H5V13M17 15V18H14V20H17V23H19V20H22V18H19V15H17Z" />
                         </Canvas>
                     </Viewbox>
-                    <Label Content="NOTES" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
-                    <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
+                    <Label Content="NOTES" Grid.Column="1" Grid.RowSpan="2" FontSize="31" Margin="15 0 0 0" />
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="20 0 0 0"  Foreground="#757575">
                       <Run x:Name="txtAantalNotities" />
                     </TextBlock>
 
                 </Grid>
-            </Border>
-            <Border BorderBrush="Black" BorderThickness="1">
+            </Button>
+
+            <Separator/>
+            <Button x:Name="btnToDo" Height="auto" Background="Transparent" Width="auto" Margin="0" BorderThickness="0">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75"/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="75"/>
                     </Grid.ColumnDefinitions>
-                    <Viewbox Grid.RowSpan="3" Height="70" Width="70" Margin="10 0 0 0" >
+                    <Viewbox Grid.RowSpan="3" Height="70" Width="70" Margin="-5 0 0 0" >
                         <Canvas Width="24" Height="24"> <!-- todo listicon -->
                             <Path Fill="Black" Data="M3,5H9V11H3V5M5,7V9H7V7H5M11,7H21V9H11V7M11,15H21V17H11V15M5,20L1.5,16.5L2.91,15.09L5,17.17L9.59,12.59L11,14L5,20Z" />
                         </Canvas>
                     </Viewbox>
-                    <Label Content="TODO" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
-                    <Border Grid.Column="1" Grid.Row="1" CornerRadius="35">
-                        <TextBlock x:Name="txtAantalTodos" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Padding="5 0"  Margin="15 0 84 0" Background="#ffbd45" />
+                    <Label Content="TODO" Grid.Column="1" FontSize="31" Margin="15 0 0 0" Grid.RowSpan="2"/>
+                    <Border Grid.Column="1" Grid.Row="2" CornerRadius="35">
+                        <TextBlock x:Name="txtAantalTodos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Padding="5 0"  Margin="15 0 80 0" Background="#ffbd45" VerticalAlignment="Center" />
                     </Border> <!-- todo checkmark -->
-                    <materialDesign:PackIcon Kind="{Binding Path=Event.todo.completed, FallbackValue='WindowClose'}" Foreground="{Binding Path=Event.todo.completeColor, FallbackValue='black'}" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="{Binding Path=Event.todo.completed, FallbackValue='WindowClose'}" Foreground="{Binding Path=Event.todo.completeColor, FallbackValue='black'}" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
                 </Grid>
-            </Border>
-            <Border BorderBrush="Black" BorderThickness="1">
+            </Button>
+            
+            <Separator/>
+
+            <Button x:Name="btnLocation" Height="auto" Background="Transparent" Width="auto" Margin="0" BorderThickness="0">
+
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75"/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="75"/>
                     </Grid.ColumnDefinitions>
-                    <Viewbox Grid.RowSpan="3" Height="70" Width="70" Margin="10 0 0 0" >
-                        <Canvas Width="24" Height="24">
-                            <Path Fill="Black" Data="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                    <Viewbox Grid.RowSpan="3" Height="70" Width="70" Margin="0 0 0 0" >
+                        <Canvas Width="24" Height="24" Margin="-5 0 0 0">
+                            <Path  Fill="Black" Data="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
                         </Canvas>
                     </Viewbox>
 
-                    <Label Content="LOCATION" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
-                    <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
-                      <Run Text="{Binding Path=Event.Locatie.adres, FallbackValue='Feestzaal Den Eyck'}"/>
+                    <Label Content="LOCATION" Grid.Column="1" Grid.RowSpan="2" FontSize="31" Margin="15 0 0 0" />
+                    <TextBlock Grid.Column="1" Grid.Row="2"  Margin="20 0 0 0" Foreground="#757575">
+                      <Run x:Name="runKlantAdres" FontSize="12"/>
                       <LineBreak />
-                      <Run Text="{Binding Path=Event.Locatie.plaats, FallbackValue='Kasterlee'}" />
+                      <Run x:Name="runKlantPlaats"  FontSize="12" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chLocatie, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chLocatie, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
                 </Grid>
-            </Border>
-            <Border BorderBrush="Black" BorderThickness="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox Grid.RowSpan="3" Height="70" Width="70" Margin="10 0 0 0" >
-                        <Canvas Width="24" Height="24">
-                            <Path Fill="Black" Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                        </Canvas>
-                    </Viewbox>
-                    <Label Content="CLIENT" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
-                    <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
-                      <Run Text="{Binding Path=Klant.Bedrijf, FallbackValue='WOKU BVBA'}"/>
-                      <LineBreak />
-                      <Run Text="{Binding Path=Klant.Naam, FallbackValue='Jonas Vermeiren'}" />
-                    </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chKlant, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
-                </Grid>
-            </Border>
+            </Button>
+            <Separator/>
+            <Button x:Name="btnClient" Height="auto" Background="Transparent" Width="auto" Margin="0" BorderThickness="0" Click="btnClient_Click">
+                    <Grid>
+                      <Grid.RowDefinitions>
+                           <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                     <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                          <ColumnDefinition Width="200" />
+                           <ColumnDefinition Width="75"/>
+                       </Grid.ColumnDefinitions>
+                        <Viewbox Grid.RowSpan="3" Height="70" Width="70">
+                           <Canvas Width="24" Height="24">
+                               <Path Fill="Black" Margin="-2 0 0 0" Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                          </Canvas>
+                        </Viewbox>
+                        <Label Content="CLIENT" Grid.Column="1" Grid.RowSpan="2" FontSize="31" Margin="15 0 0 0" />
 
-            <Border BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Grid.Column="1" Grid.Row="2"  Margin="20 0 0 0" Foreground="#757575">
+                      <Run x:Name="runKlantNaam" FontSize="12"/>
+                      <LineBreak />
+                      <Run x:Name="runKlantContact"  FontSize="12" />
+                    </TextBlock>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chKlant, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
+                   </Grid>
+            </Button>
+            <Separator/>
+            <Button x:Name="btnArtist" Height="auto" Background="Transparent" Width="auto" Margin="0" BorderThickness="0" Click="btnArtist_Click">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75"/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="75"/>
                     </Grid.ColumnDefinitions>
-                    <materialDesign:PackIcon Kind="Headphones" Grid.RowSpan="3" Height="80" Width="70" Margin="10 10 0 -50" />
-                    <Label Content="ARTISTS" Grid.Column="1" FontSize="31" Margin="15 0 0 0" />
-                    <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
-                      <Run Text=" "/>
-                      <LineBreak />
-                      <Run Text="{Binding Path=AantalArtiesten, FallbackValue='2 artists'}" />
+                    <materialDesign:PackIcon Kind="Headphones" Foreground="black" Background="white" Grid.RowSpan="3" Height="60" Width="60" VerticalAlignment="Center"/>
+                    <Label Content="ARTISTS" Grid.Column="1" Grid.RowSpan="2" FontSize="31" Margin="15 0 0 0" />
+                    <TextBlock Grid.Column="1" Grid.Row="2"  Margin="20 0 0 0" Foreground="#757575">
+                      <Run x:Name="runAantalArtiesten" FontSize="12"/>
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chArtiesten, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chArtiesten, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
                 </Grid>
-            </Border>
+            </Button>
+            <Separator/>
+
         </StackPanel>
     </Grid>
 </Window>

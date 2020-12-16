@@ -24,12 +24,10 @@ namespace EventBooze
     {
         Event huidigEvent = new Event();
         Klant nieuweklant = new Klant();
-        public KlantSelectie()
+        public KlantSelectie(int eventIndex)
         {
-            //public KlantSelectie(int EventIndex) Afgezet wegens testen.
             InitializeComponent();
-            huidigEvent = DatabaseOperations.OphalenEvent(4);
-            //4 ==> EventIndex . Nu vier om te testen.
+            huidigEvent = DatabaseOperations.OphalenEvent(eventIndex);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -100,6 +98,7 @@ namespace EventBooze
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             huidigEvent.KlantID = null;
+            huidigEvent.Klant = null;
             int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
 
             if(geslaagd == 0)
