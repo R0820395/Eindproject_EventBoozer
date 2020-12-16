@@ -32,6 +32,7 @@ namespace EventBooze
             if (overzichtArtiest != null)
             {
                 txtArtiest.Text = this.overzichtArtiest.Naam;
+                lblNaamArtiest.Content = txtArtiest.Text;
                 txtTelefoonnummer.Text = this.overzichtArtiest.Telefoon;
                 txtEmail.Text = this.overzichtArtiest.Email;
                 txtBankaccount.Text = this.overzichtArtiest.Bankrekeningnr;
@@ -74,7 +75,6 @@ namespace EventBooze
 
         public string Validatie()
         {
-            ArtiestenOverzicht artiestenOverzicht = new ArtiestenOverzicht();
             string foutmeldingen = "";
             if (string.IsNullOrWhiteSpace(txtArtiest.Text))
             {
@@ -100,6 +100,10 @@ namespace EventBooze
             return foutmeldingen;
         }
 
-       
+        private void txtArtiest_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lblNaamArtiest.Content = txtArtiest.Text;
+            
+        }
     }
 }

@@ -18,10 +18,14 @@
             <RowDefinition/>
           
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF001F89">
+            <Label  Content="Artiest" HorizontalAlignment="Center" FontSize="16" Foreground="#DDFFFFFF"/>
+            <Label  x:Name="lblNaamArtiest" Content="" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
+        </StackPanel>
         <Button Grid.Column="0" Grid.Row="1" Content="terug"/>
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
             <Label Content="Artiest naam"/>
-            <TextBox x:Name="txtArtiest"/>
+            <TextBox x:Name="txtArtiest" TextChanged="txtArtiest_TextChanged"/>
             <Label Content="Telefoonnummer"/>
             <TextBox x:Name="txtTelefoonnummer" />
             <Label Content="Email"/>
