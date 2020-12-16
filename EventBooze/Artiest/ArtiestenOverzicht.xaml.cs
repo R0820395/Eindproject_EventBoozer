@@ -33,7 +33,7 @@ namespace EventBooze
             listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
         }
 
-        
+        //cud
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
