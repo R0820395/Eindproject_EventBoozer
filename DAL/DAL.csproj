@@ -81,6 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Eventmodel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="dbOperations.cs" />
     <Compile Include="Eventtype.cs">
       <DependentUpon>Eventmodel.tt</DependentUpon>
     </Compile>
