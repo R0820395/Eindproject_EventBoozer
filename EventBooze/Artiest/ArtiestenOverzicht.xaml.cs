@@ -30,7 +30,19 @@ namespace EventBooze
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
+
+
+            artiestenlijst = DatabaseOperations.ophalenArtiesten(eventnummer);
+            listBox.ItemsSource = artiestenlijst;
+
+            //foreach (var artiest in Artiesten)
+            //{
+            //    var naam = artiest.Naam;
+            //    var email = artiest.Email;
+            //    var telefoon = artiest.Telefoon;
+            //}
+
+
         }
 
         //cud

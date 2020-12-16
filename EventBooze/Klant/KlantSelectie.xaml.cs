@@ -33,8 +33,10 @@ namespace EventBooze
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            List<Klant> alleklanten = new List<Klant>(); 
-
+            List<Klant> alleklanten = new List<Klant>();
+            txtEventNaam.Text = huidigEvent.Eventnaam;
+            txtEventTypeNaam.Text = huidigEvent.Eventtype.Naam;
+            btnTerug.Content = "< " + huidigEvent.Eventnaam;
             if (huidigEvent.KlantID == null)
             {
                 alleklanten = DatabaseOperations.OphalenKlanten();
@@ -52,7 +54,6 @@ namespace EventBooze
             {
                 Klant klant = DatabaseOperations.OphalenKlant(huidigEvent.KlantID);
                 alleklanten.Add(klant);
-                //Dit verder bekijken waarom cmb default niet getoond wordt.
                 cmbKlant.ItemsSource = alleklanten;
                 cmbKlant.SelectedIndex = 0;
                 txtKlant.Text = klant.Naam;
@@ -110,13 +111,21 @@ namespace EventBooze
                 MessageBox.Show("De klant is verwijderd van dit Event", "Melding", MessageBoxButton.OK);
             }
 
-            //terug naar vorige pagina
+            this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window nieuweKlantAanmaken = new KlantToevoegen();
+
+            Window nieuweKlantAanmaken = new KlantToevoegen(huidigEvent.EventID);
             nieuweKlantAanmaken.ShowDialog();
         }
+
+        private void btnTerug_Click(object sender, RoutedEventArgs e)
+        {
+
+            this.Close();
+        }
+
     }
 }

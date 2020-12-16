@@ -118,6 +118,7 @@ namespace DAL
 
         }
 
+
         public static int getAllTodosCount(int eventID)
         {
             using (EventEntities entities = new EventEntities())
@@ -138,6 +139,7 @@ namespace DAL
                 return query.Count();
             }
         }
+
 
 
 
