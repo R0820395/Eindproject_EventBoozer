@@ -20,20 +20,36 @@ namespace EventBooze
     /// </summary>
     public partial class ArtiestenOverzicht : Window
     {
-        public ArtiestenOverzicht()
+        int eventnummer;
+        List<Artiest> artiestenlijst = new List<Artiest>();
+
+        public ArtiestenOverzicht(int eventID)
         {
             InitializeComponent();
-
+            eventnummer = eventID;
         }
 
         List<Artiest> Artiesten = new List<Artiest>();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
+            artiestenlijst = DatabaseOperations.ophalenArtiesten(eventnummer);
+            listBox.ItemsSource = artiestenlijst;
+
+            //foreach (var artiest in Artiesten)
+            //{
+            //    var naam = artiest.Naam;
+            //    var email = artiest.Email;
+            //    var telefoon = artiest.Telefoon;
+            //}
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
+            artiestBewerken.Show();
+            
+        }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -41,7 +57,7 @@ namespace EventBooze
             var ok = DatabaseOperations.verwijderenArtiest(artiest);
             if (ok>0)
             {
-                listBox.ItemsSource = DatabaseOperations.ophalenArtiesten();
+                listBox.ItemsSource = artiestenlijst;
                 listBox.Items.Refresh();
             }
         }
@@ -56,14 +72,8 @@ namespace EventBooze
 
         private void Window_MouseEnter(object sender, MouseEventArgs e)
         {
-            Artiesten = DatabaseOperations.ophalenArtiesten();
-            listBox.ItemsSource = Artiesten;
-        }
 
-        private void btnNieuw_Click(object sender, RoutedEventArgs e)
-        {
-            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
-            artiestBewerken.Show();
+            listBox.ItemsSource = artiestenlijst;
         }
     }
 }

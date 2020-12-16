@@ -1,12 +1,19 @@
-﻿/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+======================================================================= Gemaakt door: Nisse ============================================================================================+*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-using DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using DAL;
 
 namespace EventBooze
 {
@@ -15,29 +22,25 @@ namespace EventBooze
     /// </summary>
     public partial class KlantSelectie : Window
     {
-        private Event huidigEvent = new Event();
-        private Klant nieuweklant = new Klant();
-
-        public KlantSelectie()
+        Event huidigEvent = new Event();
+        Klant nieuweklant = new Klant();
+        public KlantSelectie(int eventIndex)
         {
-            //public KlantSelectie(int EventIndex) Afgezet wegens testen.
             InitializeComponent();
-            huidigEvent = DatabaseOperations.OphalenEvent(4);
-            //4 ==> EventIndex . Nu vier om te testen.
-            lblEvent.Content = huidigEvent.Eventnaam;
-            btnTerug.Content = "< " + huidigEvent.Eventnaam;
+            huidigEvent = DatabaseOperations.OphalenEvent(eventIndex);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Klant> alleklanten = new List<Klant>();
+
+            List<Klant> alleklanten = new List<Klant>(); 
 
             if (huidigEvent.KlantID == null)
             {
                 alleklanten = DatabaseOperations.OphalenKlanten();
                 List<String> namenlijst = new List<String>();
 
-                foreach (Klant klant in alleklanten)
+                foreach(Klant klant in alleklanten)
                 {
                     namenlijst.Add(klant.Naam);
                 }
@@ -60,8 +63,8 @@ namespace EventBooze
                 txtPhone.Text = klant.Telefoon;
                 btnDelete.IsEnabled = true;
                 btnSave.IsEnabled = false;
-                btnNieuw.IsEnabled = false;
             }
+            
         }
 
         private void cmbKlant_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -80,12 +83,14 @@ namespace EventBooze
         {
             huidigEvent.KlantID = nieuweklant.KlantID;
             int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
-
-            if (geslaagd == 0)
+            
+            if(geslaagd == 0)
             {
                 MessageBox.Show("De klant kon niet worden toegewezen. Contacteer Helpdesk", "Melding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            
+            
+            
             MessageBox.Show("De klant is toegewezen aan dit Event", "Melding", MessageBoxButton.OK);
             //terug naar vorige pagina
         }
@@ -93,9 +98,10 @@ namespace EventBooze
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             huidigEvent.KlantID = null;
+            huidigEvent.Klant = null;
             int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
 
-            if (geslaagd == 0)
+            if(geslaagd == 0)
             {
                 MessageBox.Show("De klant kon niet worden verwijderd. Contacteer Helpdesk", "Melding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -109,13 +115,8 @@ namespace EventBooze
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window nieuweKlantAanmaken = new KlantToevoegen(huidigEvent);
+            Window nieuweKlantAanmaken = new KlantToevoegen();
             nieuweKlantAanmaken.ShowDialog();
-        }
-
-        private void btnTerug_Click(object sender, RoutedEventArgs e)
-        {
-            //Terug naar Event overzicht (Dieter)
         }
     }
 }
