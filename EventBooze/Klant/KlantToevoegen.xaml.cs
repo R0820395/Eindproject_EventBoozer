@@ -21,14 +21,16 @@ namespace EventBooze
     /// </summary>
     public partial class KlantToevoegen : Window
     {
-        public KlantToevoegen()
+        Event huidigEvent = new Event();
+        public KlantToevoegen(int eventID)
         {
             InitializeComponent();
+            huidigEvent = DatabaseOperations.OphalenEvent(eventID);
         }
 
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Close();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -97,6 +99,12 @@ namespace EventBooze
                 foutmelding += "De opgegeven postcode mag geen letters bevatten." + Environment.NewLine;
             }
             return foutmelding;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtEventNaam.Text = huidigEvent.Eventnaam;
+            txtEventTypeNaam.Text = huidigEvent.Eventtype.Naam;
         }
     }
 }
