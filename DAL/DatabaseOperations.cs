@@ -6,10 +6,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq;
 
 namespace DAL
 {
@@ -17,7 +15,7 @@ namespace DAL
     {
         public static List<Artiest> ophalenArtiesten()
         {
-            using (EventEntities entities = new EventEntities() )
+            using (EventEntities entities = new EventEntities())
             {
                 var query = entities.Artiest;
                 return query.ToList();
@@ -99,13 +97,11 @@ namespace DAL
 
         public static Klant OphalenKlant(int? klantId)
         {
-
-            using (EventEntities entities = new EventEntities()) 
+            using (EventEntities entities = new EventEntities())
             {
                 var query = entities.Klant
                     .Where(x => x.KlantID == klantId);
                 return query.SingleOrDefault();
-                  
             }
         }
 
@@ -136,15 +132,12 @@ namespace DAL
                     return entities.SaveChanges();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 FileOperations.FoutLoggen(ex);
 
                 return 0;
             }
-
         }
-
-
     }
 }

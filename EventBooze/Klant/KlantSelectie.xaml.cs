@@ -1,22 +1,12 @@
 ﻿/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 /*+======================================================================= Gemaakt door: Nisse ============================================================================================+*/
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+using DAL;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using DAL;
 
 namespace EventBooze
 {
@@ -25,8 +15,9 @@ namespace EventBooze
     /// </summary>
     public partial class KlantSelectie : Window
     {
-        Event huidigEvent = new Event();
-        Klant nieuweklant = new Klant();
+        private Event huidigEvent = new Event();
+        private Klant nieuweklant = new Klant();
+
         public KlantSelectie()
         {
             //public KlantSelectie(int EventIndex) Afgezet wegens testen.
@@ -39,15 +30,14 @@ namespace EventBooze
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            List<Klant> alleklanten = new List<Klant>(); 
+            List<Klant> alleklanten = new List<Klant>();
 
             if (huidigEvent.KlantID == null)
             {
                 alleklanten = DatabaseOperations.OphalenKlanten();
                 List<String> namenlijst = new List<String>();
 
-                foreach(Klant klant in alleklanten)
+                foreach (Klant klant in alleklanten)
                 {
                     namenlijst.Add(klant.Naam);
                 }
@@ -71,10 +61,7 @@ namespace EventBooze
                 btnDelete.IsEnabled = true;
                 btnSave.IsEnabled = false;
                 btnNieuw.IsEnabled = false;
-
-
             }
-
         }
 
         private void cmbKlant_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -93,14 +80,12 @@ namespace EventBooze
         {
             huidigEvent.KlantID = nieuweklant.KlantID;
             int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
-            
-            if(geslaagd == 0)
+
+            if (geslaagd == 0)
             {
                 MessageBox.Show("De klant kon niet worden toegewezen. Contacteer Helpdesk", "Melding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
-            
-            
+
             MessageBox.Show("De klant is toegewezen aan dit Event", "Melding", MessageBoxButton.OK);
             //terug naar vorige pagina
         }
@@ -110,7 +95,7 @@ namespace EventBooze
             huidigEvent.KlantID = null;
             int geslaagd = DatabaseOperations.AanpassenEvent(huidigEvent);
 
-            if(geslaagd == 0)
+            if (geslaagd == 0)
             {
                 MessageBox.Show("De klant kon niet worden verwijderd. Contacteer Helpdesk", "Melding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
