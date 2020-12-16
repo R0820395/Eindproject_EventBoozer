@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
             <Label.Content>
-                <TextBlock Text="{Binding Path=Eventnaam, FallbackValue='&#160;EventNaam&#160;'}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock x:Name="txtEventNaam" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock.TextDecorations>
                         <TextDecoration Location="Underline">
                             <TextDecoration.Pen>
@@ -64,7 +64,7 @@
 
                 </Grid>
             </Border>
-            <Border BorderBrush="Black" BorderThickness="1">
+            <Border BorderBrush="Black" BorderThickness="1" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -85,7 +85,7 @@
                     <Border Grid.Column="1" Grid.Row="1" CornerRadius="35">
                         <TextBlock x:Name="txtAantalTodos" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Padding="5 0"  Margin="15 0 84 0" Background="#ffbd45" />
                     </Border> <!-- todo checkmark -->
-                    <materialDesign:PackIcon Kind="{Binding Path=Event.todo.completed, FallbackValue='WindowClose'}" Foreground="{Binding Path=Event.todo.completeColor, FallbackValue='black'}" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon x:Name="chTodos" Kind="WindowClose" Foreground="black" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1">
@@ -112,7 +112,7 @@
                       <LineBreak />
                       <Run x:Name="txtLocatieGemeente" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chLocatie, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="Visible" x:Name="chLocatie" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1">
@@ -138,7 +138,7 @@
                       <LineBreak />
                       <Run x:Name="txtKlantnaam" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chKlant, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="CheckBold" x:Name="chKlant" Foreground="Green" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
             </Border>
 
@@ -159,9 +159,9 @@
                     <TextBlock Grid.Column="1" Grid.Row="1"  Margin="20 -10 0 0" Foreground="#757575">
                       <Run Text=" "/>
                       <LineBreak />
-                      <Run Text="{Binding Path=AantalArtiesten, FallbackValue='2 artists'}" />
+                      <Run x:Name="txtAantalArtiesten" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chArtiesten, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="Visible" x:Name="chArtiesten" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" Margin="0 15 0 -35"/>
                 </Grid>
             </Border>
         </StackPanel>

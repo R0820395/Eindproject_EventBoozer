@@ -14,6 +14,7 @@ namespace DAL
             {
                 var query = entities.Event
                     .Where(x => x.EventID == eventId);
+
                 return query.SingleOrDefault();
             }
         }
@@ -39,10 +40,25 @@ namespace DAL
         {
             using (EventEntities entities = new EventEntities())
             {
-                var query = entities.Eventtype
-                    .Where(x => x.EventtypeID == Id)
-                    .Select(x => x.Naam);
-                return query.SingleOrDefault().ToString();
+                try
+                {
+                    var query = entities.Eventtype
+                        .Where(x => x.EventtypeID == Id)
+                        .Select(x => x.Naam);
+                    return query.SingleOrDefault().ToString();
+                }catch
+                {
+                    return "";
+                }
+            }
+        }
+
+        public static List<ToDo> todos()
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.ToDo;
+                return query.ToList();
             }
         }
 
@@ -50,8 +66,15 @@ namespace DAL
         {
             using (EventEntities entities = new EventEntities())
             {
-                var query = entities.ToDo;
-                return query.Count();
+                try
+                {
+                    var query = entities.ToDo;
+                    return query.Count();
+                }
+                catch
+                {
+                    return 0;
+                }
             }
         }
 
@@ -59,9 +82,16 @@ namespace DAL
         {
             using (EventEntities entities = new EventEntities())
             {
-                var query = entities.ToDo
-                    .Where(x => x.Afgewerkt == true);
-                return query.Count();
+                try
+                {
+                    var query = entities.ToDo
+                        .Where(x => x.Afgewerkt == true);
+                    return query.Count();
+                }
+                catch
+                {
+                    return 0;
+                }
             }
         }
 
@@ -89,6 +119,16 @@ namespace DAL
             {
                 return new Klant();
             }
+        }
+
+        public static List<Artiest> getEventArtiesten(int id)
+        {
+                using (EventEntities e = new EventEntities())
+                {
+                    var q = e.Artiest
+                        .Where(x => x.EventID == id);
+                    return q.ToList();
+                }
         }
 
 
