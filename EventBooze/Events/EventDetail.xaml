@@ -20,7 +20,10 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+        <Button Panel.ZIndex="5" Width="80" Height="70" HorizontalAlignment="Left" Background="Transparent" Click="btnBack_Click" BorderThickness="0">
+        <materialDesign:PackIcon Kind="KeyboardArrowLeft" Foreground="Gray" Visibility="Visible" Height="60" Width="60" />
+        </Button>
+            <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
             <Label.Content>
                 <TextBlock x:Name="txtEventNaam" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock.TextDecorations>
@@ -87,7 +90,7 @@
                     <Border Grid.Column="1" Grid.Row="2" CornerRadius="35">
                         <TextBlock x:Name="txtAantalTodos" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Padding="5 0"  Margin="15 0 80 0" Background="#ffbd45" VerticalAlignment="Center" />
                     </Border> <!-- todo checkmark -->
-                    <materialDesign:PackIcon Kind="WindowClose" Foreground="black" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
+                    <materialDesign:PackIcon Kind="WindowClose" Foreground="black"  x:Name="chTodos" Visibility="Visible" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
                 </Grid>
             </Button>
             
@@ -114,11 +117,11 @@
 
                     <Label Content="LOCATION" Grid.Column="1" Grid.RowSpan="2" FontSize="31" Margin="15 0 0 0" />
                     <TextBlock Grid.Column="1" Grid.Row="2"  Margin="20 0 0 0" Foreground="#757575">
-                      <Run x:Name="txtKlantAdres" FontSize="12"/>
+                      <Run x:Name="txtLocatietAdres" FontSize="12"/>
                       <LineBreak />
-                      <Run x:Name="txtKlantPlaats"  FontSize="12" />
+                      <Run x:Name="txtLocatiePlaats"  FontSize="12" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chLocatie, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" x:Name="chLocatie" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
                 </Grid>
             </Button>
             <Separator/>
@@ -142,11 +145,11 @@
                         <Label Content="CLIENT" Grid.Column="1" Grid.RowSpan="2" FontSize="31" Margin="15 0 0 0" />
 
                     <TextBlock Grid.Column="1" Grid.Row="2"  Margin="20 0 0 0" Foreground="#757575">
-                      <Run x:Name="txtKlantNaam" FontSize="12"/>
+                      <Run x:Name="txtKlantContactNaam" FontSize="12"/>
                       <LineBreak />
-                      <Run x:Name="txtKlantContact"  FontSize="12" />
+                      <Run x:Name="txtKlantNaam"  FontSize="12" />
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chKlant, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" x:Name="chKlant" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
                    </Grid>
             </Button>
             <Separator/>
@@ -167,7 +170,7 @@
                     <TextBlock Grid.Column="1" Grid.Row="2"  Margin="20 0 0 0" Foreground="#757575">
                       <Run x:Name="txtAantalArtiesten" FontSize="12"/>
                     </TextBlock>
-                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" Visibility="{Binding Path=chArtiesten, FallbackValue='Visible'}" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
+                    <materialDesign:PackIcon Kind="CheckBold" Foreground="Green" x:Name="chArtiesten" Grid.RowSpan="3" Grid.Column="2" Height="60" Width="60" VerticalAlignment="Center"/>
                 </Grid>
             </Button>
             <Separator/>
