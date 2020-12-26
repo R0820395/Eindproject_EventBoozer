@@ -1,0 +1,41 @@
+﻿<Window x:Class="EventBooze.ArtiestBewerken"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventBooze"
+        mc:Ignorable="d"
+        Title="ArtiestBewerken"  WindowStartupLocation="CenterOwner" Height="450" Width="400" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+          
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF001F89">
+            <Label  Content="Artiest" HorizontalAlignment="Center" FontSize="16" Foreground="#DDFFFFFF"/>
+            <Label  x:Name="lblNaamArtiest" Content="" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
+        </StackPanel>
+
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="&lt; terug" Margin="0 0 0 5"  HorizontalContentAlignment="Left" Background="#FF4B4B4B" Click="Button_Click"/>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="0 10 0 0">
+            <Label Content="Artiest naam"/>
+            <TextBox x:Name="txtArtiest" TextChanged="txtArtiest_TextChanged"/>
+            <Label Content="Telefoonnummer"/>
+            <TextBox x:Name="txtTelefoonnummer" />
+            <Label Content="Email"/>
+            <TextBox x:Name="txtEmail"/>
+            <Label Content="Bankaccount"/>
+            <TextBox x:Name="txtBankaccount"/>
+        </StackPanel>
+        
+        <Button x:Name="btnSave" Grid.Column="1" Grid.Row="4" Content="save" Click="btnSave_Click"/>
+    </Grid>
+</Window>

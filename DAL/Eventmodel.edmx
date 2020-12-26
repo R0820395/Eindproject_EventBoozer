@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EventBoozeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EventBoozeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Artiest">
           <Key>
             <PropertyRef Name="ArtiestID" />
@@ -191,8 +191,7 @@
             <End Role="ToDo" EntitySet="ToDo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EventBoozeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -302,7 +301,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Event_Klant">
-          <End Role="Klant" Type="Self.Klant" Multiplicity="0..1" />
+          <End Role="Klant" Type="EventBoozeModel.Klant" Multiplicity="0..1" />
           <End Role="Event" Type="Self.Event" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Klant">
@@ -365,7 +364,7 @@
           <EntitySet Name="Artiest" EntityType="Self.Artiest" />
           <EntitySet Name="Event" EntityType="Self.Event" />
           <EntitySet Name="Eventtype" EntityType="Self.Eventtype" />
-          <EntitySet Name="Klant" EntityType="Self.Klant" />
+          <EntitySet Name="Klant" EntityType="EventBoozeModel.Klant" />
           <EntitySet Name="Locatie" EntityType="Self.Locatie" />
           <EntitySet Name="Notitie" EntityType="Self.Notitie" />
           <EntitySet Name="ToDo" EntityType="Self.ToDo" />

@@ -1,0 +1,110 @@
+<Window x:Class="EventBooze.KlantToevoegen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventBooze"
+        mc:Ignorable="d"
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      Height="812" Width="375"
+        Title="KlantToevoegen" Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="272*"/>
+            <ColumnDefinition Width="95*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Grid.ColumnSpan="2">
+            <Label.Content>
+                <TextBlock x:Name="txtEventNaam" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration Location="Underline">
+                            <TextDecoration.Pen>
+                                <Pen Brush="Blue" />
+                            </TextDecoration.Pen>
+                        </TextDecoration>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+        <Label  Background="Black" Foreground="#e0e0e0" FontSize="13" Margin="0 55 0 15" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Panel.ZIndex="2" Grid.ColumnSpan="2">
+            <Label.Content>
+                <TextBlock x:Name="txtEventTypeNaam" VerticalAlignment="Center" HorizontalAlignment="Center">
+                </TextBlock>
+            </Label.Content>
+        </Label>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" Grid.ColumnSpan="2">
+            <Grid>
+
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnTerug" Content="&lt; Klantselectie" Margin="0" Width="375" FontSize="10" Grid.Row="1" HorizontalContentAlignment="Left" Height="20" Background="#FF4B4B4B" Click="btnTerug_Click"/>
+
+
+
+                <Separator Grid.Row="1" VerticalAlignment="Bottom" Margin="20 0" />
+
+                <StackPanel Orientation="Vertical" Grid.Row="3" Margin="20" IsEnabled="True">
+                    <Label Content="Name" />
+                    <TextBox x:Name="txtKlant" Background="LightGray" FontSize="16"/>
+
+                    <Label Content="Street" />
+                    <TextBox x:Name="txtStraat" Background="LightGray" FontSize="16"/>
+
+                    <Label Content="nr" />
+                    <TextBox x:Name="txtNummer" Background="LightGray" FontSize="16"/>
+
+                    <Label Content="Postal code" />
+                    <TextBox x:Name="txtPostcode" Background="LightGray" FontSize="16"/>
+
+                    <Label Content="City" />
+                    <TextBox x:Name="txtStad" Background="LightGray" FontSize="16"/>
+
+                    <Label Content="VAT" />
+                    <TextBox x:Name="txtVAT" Background="LightGray" FontSize="16"/>
+                </StackPanel>
+                <Separator Grid.Row="3" VerticalAlignment="Bottom" Margin="20 0"/>
+
+                <StackPanel Orientation="Vertical" Grid.Row="4" Margin="20">
+                    <Label Content="Contact name:" />
+                    <TextBox x:Name="txtcontact" Background="LightGray" FontSize="16"/>
+
+                    <Label Content="E-mail:" />
+                    <TextBox x:Name="txtmail" Background="LightGray" FontSize="16"/>
+
+                    <Label Content="Phone:" />
+                    <TextBox x:Name="txtphone" Background="LightGray" FontSize="16"/>
+                </StackPanel>
+
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="btnSave" Grid.Column="1" Content="Save" Width="100" Click="btnSave_Click"/>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
