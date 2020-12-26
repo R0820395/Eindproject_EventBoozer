@@ -18,6 +18,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
@@ -33,5 +36,26 @@
                 </TextBlock>
             </Label.Content>
         </Label>
+        <Button Panel.ZIndex="5" Width="80" Height="70" HorizontalAlignment="Left" Background="Transparent" Click="btnBack_Click" BorderThickness="0">
+            <materialDesign:PackIcon Kind="KeyboardArrowLeft" Foreground="Gray" Visibility="Visible" Height="60" Width="60" />
+        </Button>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Margin="20" IsEnabled="True">
+            <Label Content="Event Name:" />
+            <TextBox x:Name="txtEventName" Background="LightGray" FontSize="16"/>
+
+            <Label Content="Type:" />
+            <TextBox x:Name="txtType" Background="LightGray" FontSize="16"/>
+
+            <Label Content="Date:" />
+            <TextBox x:Name="txtDate" Background="LightGray" FontSize="16"/>
+
+            <Label Content="Start Time:" />
+            <TextBox x:Name="txtStart" Background="LightGray" FontSize="16"/>
+
+            <Label Content="End Time:" />
+            <TextBox x:Name="txtEnd" Background="LightGray" FontSize="16"/>
+        </StackPanel>
+
+        <Button x:Name="btnSave" Grid.Row="3" Content="Save" Width="100" Click="btnSave_Click"/>
     </Grid>
 </Window>

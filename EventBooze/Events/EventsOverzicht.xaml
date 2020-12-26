@@ -19,7 +19,6 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <materialDesign:PackIcon Kind="Add" FontSize="34" Panel.ZIndex="2" Foreground="White" VerticalAlignment="center" Margin="10 20 3 0" Height="40" Width="40"/>
         <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
             <Label.Content>
                 <TextBlock Text="&#160;Events&#160;" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -33,5 +32,28 @@
                 </TextBlock>
             </Label.Content>
         </Label>
+        <Button Panel.ZIndex="5" Width="80" Height="70" HorizontalAlignment="Left" Background="Transparent" Click="btnToevoegen_Click" BorderThickness="0">
+            <materialDesign:PackIcon Kind="Add" Foreground="AntiqueWhite" Visibility="Visible" Height="60" Width="60" />
+        </Button>
+        <Grid x:Name="gridEvents" Grid.Row="1" />
+        <!--
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Button x:Name="brdColor" Background="Beige" Grid.Column="0" Grid.RowSpan="4" Margin="0" Padding="0" BorderThickness="0"/>
+                <Label x:Name="lblName" Grid.Column="1" Content="Tempcomnte" />
+            </Grid>
+        </StackPanel>
+        -->
     </Grid>
 </Window>

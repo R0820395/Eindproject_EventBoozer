@@ -5,7 +5,7 @@
 
 
 
-             StartupUri="Events/EventDetail.xaml">
+             StartupUri="Events/EventsOverzicht.xaml">
 
     <Application.Resources>
 

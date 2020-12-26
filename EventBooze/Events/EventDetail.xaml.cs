@@ -1,4 +1,4 @@
-﻿//Nisse
+﻿// author: Dieter Daems
 
 using System;
 using System.Collections.Generic;
@@ -22,12 +22,14 @@ namespace EventBooze.Events
     /// </summary>
     public partial class EventDetail : Window
     {
-        public EventDetail()
+        private int eventID = 6; //6, 4
+        public EventDetail(int eventId)
         {
+            eventID = eventId;
             InitializeComponent();
         }
 
-        int eventID = 6; //6, 4
+        
 
         List<ToDo> toDos = new List<ToDo>();
         Klant klant = new Klant();

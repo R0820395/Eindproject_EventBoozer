@@ -46,8 +46,6 @@ namespace DAL
             }
         }
 
-
-
         public static Event OphalenEvent(int eventId)
         {
             using (EventEntities entities = new EventEntities())
@@ -63,6 +61,68 @@ namespace DAL
                 return query.SingleOrDefault();
             }
         }
+        // author: Dieter Daems
+        public static List<Event> OphalenAllEvents()
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.Event
+                    .Include(x => x.Notities)
+                    .Include(x => x.Klant)
+                    .Include(x => x.Eventtype)
+                    .Include(x => x.ToDos)
+                    .Include(x => x.Locatie)
+                    .Where(x => x.EventID == x.EventID);
+                return query.ToList();
+            }
+        }
+
+        public static bool verwijderEvent(Event ev)
+        {
+            try
+            {
+                using (EventEntities entities = new EventEntities())
+                {
+                    // entities.Event.Remove(ev);
+                    entities.Entry(ev).State = EntityState.Deleted;
+                    entities.SaveChanges();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        public static bool ToevoegenEvent(Event ev)
+        {
+            try
+            {
+                using (EventEntities entities = new EventEntities())
+                {
+                    entities.Event.Add(ev);
+                    entities.SaveChanges();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static List<Eventtype> EventTypesOphalen()
+        {
+
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.Eventtype;
+                return query.ToList();
+            }
+
+        }
+        // einde: Dieter Daems
 
         public static List<Klant> OphalenKlanten()
         {
