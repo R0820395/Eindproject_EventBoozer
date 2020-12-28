@@ -171,7 +171,7 @@ namespace DAL
                     return entities.SaveChanges();
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 return 0;
             }
