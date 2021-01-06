@@ -1,0 +1,61 @@
+﻿<Window x:Class="EventBooze.Events.EventBewerken"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventBooze.Events"
+        mc:Ignorable="d"
+        Title="EventBewerken"
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="15"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="{DynamicResource MaterialDesignPaper}"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+        Width="375" Height="812">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+            <Label.Content>
+                <TextBlock Text="&#160;Event&#160;" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration Location="Underline">
+                            <TextDecoration.Pen>
+                                <Pen Brush="Blue" />
+                            </TextDecoration.Pen>
+                        </TextDecoration>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+        <Button Panel.ZIndex="5" Width="80" Height="70" HorizontalAlignment="Left" Background="Transparent" Click="btnBack_Click" BorderThickness="0">
+            <materialDesign:PackIcon Kind="KeyboardArrowLeft" Foreground="Gray" Visibility="Visible" Height="60" Width="60" />
+        </Button>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Margin="20" IsEnabled="True">
+            <Label Content="Event Name:" />
+            <TextBox x:Name="txtEventName" Background="LightGray" FontSize="16"/>
+
+            <Label Content="Type:" />
+            <TextBox x:Name="txtType" Background="LightGray" FontSize="16"/>
+
+            <Label Content="Date:" />
+            <TextBox x:Name="txtDate" Background="LightGray" FontSize="16"/>
+
+            <Label Content="Start Time:" />
+            <TextBox x:Name="txtStart" Background="LightGray" FontSize="16"/>
+
+            <Label Content="End Time:" />
+            <TextBox x:Name="txtEnd" Background="LightGray" FontSize="16"/>
+        </StackPanel>
+
+        <Button x:Name="btnSave" Grid.Row="3" Content="Save" Width="100" Click="btnSave_Click"/>
+    </Grid>
+</Window>

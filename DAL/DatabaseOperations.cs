@@ -1,10 +1,4 @@
-﻿/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+======================================================================= Artiesten:   Jan ===============================================================================================+*/
-/*+======================================================================= Klanten:     Nisse =============================================================================================+*/
-/*+======================================================================= Events:      Dieter ============================================================================================+*/
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,67 +9,41 @@ namespace DAL
 {
     public static class DatabaseOperations
     {
-        public static List<Artiest> ophalenArtiesten()
+        public static List<Artiest> ophalenArtiesten(int eventID)
         {
             using (EventEntities entities = new EventEntities() )
             {
-                var query = entities.Artiest;
+                var query = entities.Artiest
+                    .Where(x => x.EventID == eventID);
                 return query.ToList();
             }
         }
 
         public static int aanpassenArtiest(Artiest artiest)
         {
-            try
+            using (EventEntities entities = new EventEntities())
             {
-                using (EventEntities entities = new EventEntities())
-                {
-                    entities.Entry(artiest).State = System.Data.Entity.EntityState.Modified;
-                    return entities.SaveChanges();
-                }
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Modified;
+                return entities.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                FileOperations.FoutLoggen(ex);
-                return 0;
-            }
-            
         }
 
         public static int toevoegenArtiest(Artiest artiest)
         {
-            try
+            using (EventEntities entities = new EventEntities())
             {
-                using (EventEntities entities = new EventEntities())
-                {
-                    entities.Artiest.Add(artiest);
-                    return entities.SaveChanges();
-                }
+                entities.Artiest.Add(artiest);
+                return entities.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                FileOperations.FoutLoggen(ex);
-                return 0;
-            }
-            
         }
 
         public static int verwijderenArtiest(Artiest artiest)
         {
-            try
+            using (EventEntities entities = new EventEntities())
             {
-                using (EventEntities entities = new EventEntities())
-                {
-                    entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
-                    return entities.SaveChanges();
-                }
+                entities.Entry(artiest).State = System.Data.Entity.EntityState.Deleted;
+                return entities.SaveChanges();
             }
-            catch (Exception ex)
-            {
-                FileOperations.FoutLoggen(ex);
-                return 0;
-            }
-
         }
 
         public static Event OphalenEvent(int eventId)
@@ -83,10 +51,78 @@ namespace DAL
             using (EventEntities entities = new EventEntities())
             {
                 var query = entities.Event
+                    .Include(x => x.Notities)
+                    .Include(x => x.Klant)
+                    .Include(x => x.Eventtype)
+                    .Include(x => x.ToDos)
+                    .Include(x => x.Locatie)
+        
                     .Where(x => x.EventID == eventId);
                 return query.SingleOrDefault();
             }
         }
+        // author: Dieter Daems
+        public static List<Event> OphalenAllEvents()
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.Event
+                    .Include(x => x.Notities)
+                    .Include(x => x.Klant)
+                    .Include(x => x.Eventtype)
+                    .Include(x => x.ToDos)
+                    .Include(x => x.Locatie)
+                    .Where(x => x.EventID == x.EventID);
+                return query.ToList();
+            }
+        }
+
+        public static bool verwijderEvent(Event ev)
+        {
+            try
+            {
+                using (EventEntities entities = new EventEntities())
+                {
+                    // entities.Event.Remove(ev);
+                    entities.Entry(ev).State = EntityState.Deleted;
+                    entities.SaveChanges();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        public static bool ToevoegenEvent(Event ev)
+        {
+            try
+            {
+                using (EventEntities entities = new EventEntities())
+                {
+                    entities.Event.Add(ev);
+                    entities.SaveChanges();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static List<Eventtype> EventTypesOphalen()
+        {
+
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.Eventtype;
+                return query.ToList();
+            }
+
+        }
+        // einde: Dieter Daems
 
         public static List<Klant> OphalenKlanten()
         {
@@ -121,7 +157,6 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                FileOperations.FoutLoggen(ex);
                 return 0;
             }
         }
@@ -138,12 +173,33 @@ namespace DAL
             }
             catch(Exception ex)
             {
-                FileOperations.FoutLoggen(ex);
-
                 return 0;
             }
 
         }
+
+        public static int getAllTodosCount(int eventID)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.ToDo
+                    .Where(x => x.EventID == eventID);
+                return query.Count();
+            }
+        }
+
+        public static int getTodosCompletedCount(int eventID)
+        {
+            using (EventEntities entities = new EventEntities())
+            {
+                var query = entities.ToDo
+                    .Where(x => x.Afgewerkt == true)
+                    .Where(x => x.EventID == eventID);
+                return query.Count();
+            }
+        }
+
+
 
 
     }

@@ -1,0 +1,59 @@
+﻿<Window x:Class="EventBooze.Events.EventsOverzicht"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventBooze.Events"
+        mc:Ignorable="d"
+        Title="Events Overzicht" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="15"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="{DynamicResource MaterialDesignPaper}"
+            FontFamily="{DynamicResource MaterialDesignFont}"
+        Width="375" Height="812">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Background="Black" Foreground="White" FontSize="34" Padding="0 15" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center">
+            <Label.Content>
+                <TextBlock Text="&#160;Events&#160;" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration Location="Underline">
+                            <TextDecoration.Pen>
+                                <Pen Brush="Blue" />
+                            </TextDecoration.Pen>
+                        </TextDecoration>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+        <Button Panel.ZIndex="5" Width="80" Height="70" HorizontalAlignment="Left" Background="Transparent" Click="btnToevoegen_Click" BorderThickness="0">
+            <materialDesign:PackIcon Kind="Add" Foreground="AntiqueWhite" Visibility="Visible" Height="60" Width="60" />
+        </Button>
+        <Grid x:Name="gridEvents" Grid.Row="1" />
+        <!--
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Button x:Name="brdColor" Background="Beige" Grid.Column="0" Grid.RowSpan="4" Margin="0" Padding="0" BorderThickness="0"/>
+                <Label x:Name="lblName" Grid.Column="1" Content="Tempcomnte" />
+            </Grid>
+        </StackPanel>
+        -->
+    </Grid>
+</Window>
