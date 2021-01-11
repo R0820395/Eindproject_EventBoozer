@@ -67,5 +67,10 @@ namespace EventBooze
             ArtiestBewerken artiestBewerken = new ArtiestBewerken(eventnummer);
             artiestBewerken.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -22,7 +22,7 @@
             <Label  x:Name="lblNaamArtiest" Content="" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
         </StackPanel>
         <Button x:Name="btnNieuw" Click="btnNieuw_Click"  Content="+" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" />
-        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="&lt; Home" Margin="0 0 0 5"  HorizontalContentAlignment="Left" Background="#FF4B4B4B"/>
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="&lt; Home" Margin="0 0 0 5"  HorizontalContentAlignment="Left" Background="#FF4B4B4B" Click="Button_Click"/>
         <ListBox Grid.Row="2" x:Name="listBox" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
