@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventBooze"
         mc:Ignorable="d"
-        Title="ArtiestenOverzicht" Height="450" Width="400" Loaded="Window_Loaded" MouseEnter="Window_MouseEnter" WindowStartupLocation="CenterOwner">
+        Title="ArtiestenOverzicht" Height="812" Width="400" Loaded="Window_Loaded" MouseEnter="Window_MouseEnter" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
             
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition  Height="auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF001F89">
-            <Label  Content="Artiest" HorizontalAlignment="Center" FontSize="16" Foreground="#DDFFFFFF"/>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2" Background="Black">
+            <Label  Content="Artiest" Background="Black" Foreground="White" FontSize="34" Padding="0 15 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
             <Label  x:Name="lblNaamArtiest" Content="" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
         </StackPanel>
-        <Button x:Name="btnNieuw" Click="btnNieuw_Click"  Content="+" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" />
-        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="&lt; Home" Margin="0 0 0 5"  HorizontalContentAlignment="Left" Background="#FF4B4B4B"/>
+        <Button x:Name="btnNieuw" Click="btnNieuw_Click"  Content="+" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="50" Background="Transparent" BorderBrush="Transparent" />
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="&lt; Home" Margin="0 0 0 5"  HorizontalContentAlignment="Left" Background="#FF4B4B4B" Click="Button_Click"/>
         <ListBox Grid.Row="2" x:Name="listBox" >
             <ListBox.ItemTemplate>
                 <DataTemplate>

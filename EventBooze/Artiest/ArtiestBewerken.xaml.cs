@@ -22,10 +22,12 @@ namespace EventBooze
     public partial class ArtiestBewerken : Window
     {
         public Artiest overzichtArtiest;
+        int eventnummer;
 
-        public ArtiestBewerken()
+
+        public ArtiestBewerken(int eventID)
         {
-            InitializeComponent();
+            InitializeComponent(); eventnummer = eventID;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -46,7 +48,7 @@ namespace EventBooze
             string foutmeldingen = Validatie();
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                int ok;
+                int ok = 0;
 
                 if (overzichtArtiest != null)
                 {
@@ -54,20 +56,37 @@ namespace EventBooze
                     overzichtArtiest.Telefoon = txtTelefoonnummer.Text;
                     overzichtArtiest.Email = txtEmail.Text;
                     overzichtArtiest.Bankrekeningnr = txtBankaccount.Text;
-                    ok = DatabaseOperations.aanpassenArtiest(overzichtArtiest);
+
+                    if (overzichtArtiest.IsGeldig())
+                    {
+                        ok = DatabaseOperations.aanpassenArtiest(overzichtArtiest);
+                    }
+                    else
+                    {
+                        MessageBox.Show(overzichtArtiest.Error, "Foutmeldigen", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    
                 }
                 else
                 {
                     Artiest artiest = new Artiest();
-                    artiest.EventID = 4;
+                    artiest.EventID = eventnummer;
                     artiest.Naam = txtArtiest.Text;
                     artiest.Telefoon = txtTelefoonnummer.Text;
                     artiest.Email = txtEmail.Text;
                     artiest.Bankrekeningnr = txtBankaccount.Text;
-                    ok = DatabaseOperations.toevoegenArtiest(artiest);
+                    if (artiest.IsGeldig())
+                    {
+                        ok = DatabaseOperations.toevoegenArtiest(artiest);
+                    }
+                    else
+                    {
+                        MessageBox.Show(overzichtArtiest.Error, "Foutmeldigen", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                 }
 
-                if (ok >= 1) { Close(); };
+                if (ok > 0) { Close(); };
             }
             else
             {
@@ -86,10 +105,7 @@ namespace EventBooze
             {
                 foutmeldingen += "Telefoonnummer: verplicht" + Environment.NewLine;
             }
-            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
-            {
-                foutmeldingen += "Email: niet geldig" + Environment.NewLine;
-            }
+            
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 foutmeldingen += "Email: verplicht" + Environment.NewLine;
@@ -98,12 +114,7 @@ namespace EventBooze
             {
                 foutmeldingen += "Bankaccount: verplicht" + Environment.NewLine;
             }
-            if (!Regex.Match(txtBankaccount.Text, @"^BE\d{14}$").Success)
-            {
-                foutmeldingen += "Bankaccount: verplicht" + Environment.NewLine;
-            }
-
-
+ 
             return foutmeldingen;
         }
 

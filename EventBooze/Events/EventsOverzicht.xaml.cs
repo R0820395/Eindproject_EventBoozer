@@ -260,7 +260,6 @@ namespace EventBooze.Events
         }
         private void callViewUpdate(object sender, EventArgs e)
         {
-            MessageBox.Show("callViewUpdate fired");
             updateView();
         }
 

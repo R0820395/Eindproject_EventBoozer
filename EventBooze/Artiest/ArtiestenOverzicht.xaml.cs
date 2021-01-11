@@ -51,7 +51,7 @@ namespace EventBooze
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             Artiest artiest = (sender as Button).DataContext as Artiest;
-            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
+            ArtiestBewerken artiestBewerken = new ArtiestBewerken(eventnummer);
             artiestBewerken.overzichtArtiest = artiest;
             artiestBewerken.Show();
         }
@@ -64,8 +64,13 @@ namespace EventBooze
 
         private void btnNieuw_Click(object sender, RoutedEventArgs e)
         {
-            ArtiestBewerken artiestBewerken = new ArtiestBewerken();
+            ArtiestBewerken artiestBewerken = new ArtiestBewerken(eventnummer);
             artiestBewerken.Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
