@@ -27,7 +27,7 @@ namespace DAL
                                 return "";
                             }
                         }
-                        return "Het opgegeven event type bestaat niet!";
+                        return "Gelieven te kiezen tussen: Fuif, Vat, Trouwfeest";
                     default: return "";
                 }
             }
