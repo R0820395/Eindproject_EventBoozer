@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DAL;
+using System.Globalization;
+using System.Reflection;
 
 namespace EventBooze.Events
 {
@@ -24,6 +26,7 @@ namespace EventBooze.Events
     /// </summary>
     public partial class EventBewerken : Window
     {
+        DateTime selectiedag;
         private bool isUpdate = false;
         public Event ev = new Event();
         
@@ -64,6 +67,8 @@ namespace EventBooze.Events
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+  
+
             //string foutmeldingen = inputControle();
             this.Language = XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
             bool foutmeldingen = ev.IsGeldig();
@@ -77,7 +82,8 @@ namespace EventBooze.Events
             
             ev.Eventnaam = txtEventName.Text;
             //ev.Eventtype.Naam = txtType.Text;
-            ev.Datum = DateTime.Parse(txtDate.Text);
+            ev.Datum = dpPicker.SelectedDate.Value;
+            selectiedag = dpPicker.SelectedDate.Value;
             ev.Startuur = txtStart.Text;
             ev.Einduur = txtEnd.Text;
             // TODO : Toon messagebox on succes
@@ -107,7 +113,7 @@ namespace EventBooze.Events
         protected virtual void OnSuccess(EventArgs e)
         {
             Success?.Invoke(this, e);
-            MessageBox.Show("gegevens succesvol toegegoegd");
+            MessageBox.Show("gegevens succesvol toegevoegd");
         }
 
         private string inputControle()
@@ -146,9 +152,9 @@ namespace EventBooze.Events
             {
                 foutmeldingen += "Het Type veld mag niet leeg zijn." + Environment.NewLine;
             }
-            
-            if (!string.IsNullOrWhiteSpace(txtDate.Text)) {
-                if (!DateTime.TryParse(txtDate.Text, out DateTime res))
+
+            if (!string.IsNullOrWhiteSpace(selectiedag.ToString())) {
+                if (!DateTime.TryParse(selectiedag.ToString(), out DateTime res))
                 {
                     foutmeldingen += "De ingegeven datum is niet geldig." + Environment.NewLine;
                 }
@@ -189,7 +195,6 @@ namespace EventBooze.Events
             name.SetBinding(TextBox.TextProperty, binding);
         }
         bool txtEventnameBinding = false;
-        bool txtDateBinding = false;
         bool txtStartBinding = false;
         bool txtEndBinding = false;
         bool txtTypeBinding = false;
@@ -199,12 +204,7 @@ namespace EventBooze.Events
             EnableValidateOnErrorsBinding(txtEventName);
             txtEventnameBinding = true;
         }
-        private void txtDate_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtDateBinding) return;
-            EnableValidateOnErrorsBinding(txtDate);
-            txtDateBinding = true;
-        }
+
 
         private void txtType_GotFocus(object sender, RoutedEventArgs e)
         {

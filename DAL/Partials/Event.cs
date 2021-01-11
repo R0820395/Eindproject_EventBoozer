@@ -22,12 +22,12 @@ namespace DAL
                         break;
                         // something is a miss here
                     case "Datum":
-                        if (string.IsNullOrWhiteSpace(Datum.ToString())) return "Een datum is verplicht";
-                        if (Datum.Year == 1) return "De ingegeven datum is niet geldig.";
-                        if (!DateTime.TryParse(Datum.ToString(), out DateTime res))
-                        {
-                            return "De ingegeven datum is niet geldig.";
-                        }
+                        //if (string.IsNullOrWhiteSpace(Datum.ToString())) return "Een datum is verplicht";
+                        //if (Datum.Year == 1) return "De ingegeven datum is niet geldig.";
+                        //if (!DateTime.TryParse(Datum.ToString(), out DateTime res))
+                        //{
+                        //    return "De ingegeven datum is niet geldig.";
+                        //}
                         break;
 
                     case "Startuur":
