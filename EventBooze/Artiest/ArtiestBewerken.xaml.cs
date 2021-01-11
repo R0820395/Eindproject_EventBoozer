@@ -22,12 +22,12 @@ namespace EventBooze
     public partial class ArtiestBewerken : Window
     {
         public Artiest overzichtArtiest;
-        
+        int eventnummer;
 
 
-        public ArtiestBewerken()
+        public ArtiestBewerken(int eventID)
         {
-            InitializeComponent();
+            InitializeComponent(); eventnummer = eventID;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -70,7 +70,7 @@ namespace EventBooze
                 else
                 {
                     Artiest artiest = new Artiest();
-                    artiest.EventID = 4;
+                    artiest.EventID = eventnummer;
                     artiest.Naam = txtArtiest.Text;
                     artiest.Telefoon = txtTelefoonnummer.Text;
                     artiest.Email = txtEmail.Text;
