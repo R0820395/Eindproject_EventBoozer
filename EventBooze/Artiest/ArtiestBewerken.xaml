@@ -12,14 +12,14 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
           
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2" Background="#FF001F89">
-            <Label  Content="Artiest" HorizontalAlignment="Center" FontSize="16" Foreground="#DDFFFFFF"/>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2" Background="Black">
+            <Label  Content="Artiest" Background="Black" Foreground="White" FontSize="34" Padding="0 15 0 0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
             <Label  x:Name="lblNaamArtiest" Content="" HorizontalAlignment="Center" FontSize="12" Foreground="#DDFFFFFF"/>
         </StackPanel>
 
