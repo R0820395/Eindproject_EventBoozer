@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventBooze.Events"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         mc:Ignorable="d"
         Title="EventBewerken"
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -41,19 +42,19 @@
         </Button>
         <StackPanel Orientation="Vertical" Grid.Row="2" Margin="20" IsEnabled="True">
             <Label Content="Event Name:" />
-            <TextBox x:Name="txtEventName" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtEventName" Text="{Binding Eventnaam, ValidatesOnDataErrors=false, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Background="LightGray" FontSize="16" GotFocus="txtEventName_GotFocus" Margin="0 0 0 10"/>
 
             <Label Content="Type:" />
-            <TextBox x:Name="txtType" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtType" Text="{Binding Eventtype.Naam, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Background="LightGray" FontSize="16" Margin="0 0 0 10" GotFocus="txtType_GotFocus" />
 
             <Label Content="Date:" />
-            <TextBox x:Name="txtDate" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtDate" Text="{Binding Datum, StringFormat='d/M/yyyy', ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Background="LightGray" FontSize="16" Margin="0 0 0 10" GotFocus="txtDate_GotFocus" />
 
             <Label Content="Start Time:" />
-            <TextBox x:Name="txtStart" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtStart" Text="{Binding Startuur, ValidatesOnDataErrors=false, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Background="LightGray" FontSize="16" GotFocus="txtStart_GotFocus" Margin="0 0 0 10"/>
 
             <Label Content="End Time:" />
-            <TextBox x:Name="txtEnd" Background="LightGray" FontSize="16"/>
+            <TextBox x:Name="txtEnd" Text="{Binding Einduur, ValidatesOnDataErrors=false, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Background="LightGray" FontSize="16" GotFocus="txtEnd_GotFocus" Margin="0 0 0 10"/>
         </StackPanel>
 
         <Button x:Name="btnSave" Grid.Row="3" Content="Save" Width="100" Click="btnSave_Click"/>
