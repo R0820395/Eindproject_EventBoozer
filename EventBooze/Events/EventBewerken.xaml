@@ -48,7 +48,7 @@
             <TextBox x:Name="txtType" Text="{Binding Eventtype.Naam, ValidatesOnDataErrors=true, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Background="LightGray" FontSize="16" Margin="0 0 0 10" GotFocus="txtType_GotFocus" />
 
             <Label Content="Date:" />
-            <DatePicker x:Name="dpPicker"></DatePicker>
+            <DatePicker x:Name="dpPicker" Text="{Binding Datum}"></DatePicker>
             
             <Label Content="Start Time:" />
             <TextBox x:Name="txtStart" Text="{Binding Startuur, ValidatesOnDataErrors=false, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Background="LightGray" FontSize="16" GotFocus="txtStart_GotFocus" Margin="0 0 0 10"/>
